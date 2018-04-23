@@ -10,7 +10,7 @@ Sheets.Add.Name = NewName6
       On Error GoTo endd
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, emp As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
 
 'Dim att As String
 
@@ -24,8 +24,7 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
-
-emp = 0
+fl = 1  '新表列
 dh = 0 '被删除行数
 
 nei:
@@ -33,18 +32,7 @@ nei:
 
 
 
-If n9 = 10 Then
-
-GoTo jixu
-
-ElseIf n9 = 11 Then
-GoTo jixu
-
-ElseIf n9 = 12 Then
-GoTo jixu
-
-ElseIf n9 = 13 Then
-GoTo jixu
+If n9 > 9 And n9 < 14 Then
 
 ElseIf n9 > 14 And n9 < 21 Then
 GoTo jixu
@@ -52,14 +40,9 @@ GoTo jixu
 ElseIf n9 > 24 And n9 < 33 Then
 GoTo jixu
 
-ElseIf n9 = 35 Then
+ElseIf n9 > 34 And n9 < 38 Then
 GoTo jixu
 
-ElseIf n9 = 36 Then
-GoTo jixu
-
-ElseIf n9 = 37 Then
-GoTo jixu
 
 ElseIf n9 = 41 Then
 GoTo jixu
@@ -78,12 +61,7 @@ jixu:
 
 Do
 
-'     Sheets(kvname).Select
-'  att = ActiveSheet.Cells(j9, yl).Text
-   
- '  Sheets(NewName6).Select
-'   ActiveSheet.Cells(a2, fl).Value = att
-   
+  
     
 Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
     
@@ -99,11 +77,9 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
    End If
    
     
-    
-     '   Sheets(kvname).Select
 
- If Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0 Then
-emp = 3
+ 
+Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
@@ -116,11 +92,6 @@ ll = 0
 a2 = 2
 jia:
 n9 = n9 + 1
-
- End If
-  
-Loop Until emp = 3
-
 
 GoTo nei
 
@@ -274,7 +245,7 @@ Sheets.Add.Name = NewName6
       On Error GoTo endd
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, emp As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
 
 
 
@@ -288,8 +259,8 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
+fl = 1  '新表列
 
-emp = 0
 dh = 0 '被删除行数
 
 nei:
@@ -334,11 +305,9 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
 
    End If
    
-    
-    
-
- If Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0 Then
-emp = 3
+        
+  
+Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
@@ -351,11 +320,6 @@ ll = 0
 a2 = 2
 jia:
 n9 = n9 + 1
-
- End If
-  
-Loop Until emp = 3
-
 
 GoTo nei
 
@@ -509,7 +473,7 @@ Sheets.Add.Name = NewName6
       On Error GoTo endd
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, emp As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
 
 
 
@@ -523,8 +487,7 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
-
-emp = 0
+fl = 1  '新表列
 dh = 0 '被删除行数
 
 nei:
@@ -578,10 +541,9 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
    End If
    
     
-    
 
- If Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0 Then
-emp = 3
+  
+Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
@@ -594,10 +556,6 @@ ll = 0
 a2 = 2
 jia:
 n9 = n9 + 1
-
- End If
-  
-Loop Until emp = 3
 
 
 GoTo nei
@@ -750,7 +708,7 @@ Sheets.Add.Name = NewName6
       On Error GoTo endd
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, emp As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2  As Integer
 
 
 
@@ -764,8 +722,7 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
-
-emp = 0
+fl = 1  '新表列
 dh = 0 '被删除行数
 
 nei:
@@ -811,10 +768,10 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
    End If
    
     
-    
 
- If Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0 Then
-emp = 3
+  
+Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
+
 j9 = n9
 kh = a2
  i = 1
@@ -827,11 +784,6 @@ ll = 0
 a2 = 2
 jia:
 n9 = n9 + 1
-
- End If
-  
-Loop Until emp = 3
-
 
 GoTo nei
 
@@ -981,7 +933,7 @@ Sheets.Add.Name = NewName6
       On Error GoTo endd
 
 
-Dim j9, n9, yl, i, a2, fl, kh, kh2, fl2, dh, lh, emp As Integer
+Dim j9, n9, yl, i, a2, fl, kh, kh2, fl2, dh, lh As Integer
 
 
 
@@ -995,7 +947,7 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 
 a2 = 2  '新表行
-
+fl = 1  '新表列
 emp = 0
 dh = 0 '被删除行数
 
@@ -1039,10 +991,10 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
 
   j9 = j9 + 50
  i = i + 50
-    
 
- If Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0 Then
-emp = 3
+  
+Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
+
 j9 = n9
 kh = a2
  i = 1
@@ -1055,12 +1007,6 @@ ll = 0
 a2 = 2
 jia:
 n9 = n9 + 1
-
- End If
-  
-Loop Until emp = 3
-
-
 GoTo nei
 
 
@@ -1198,11 +1144,4 @@ ee:
         
 endd:
 End Sub
-Sub 行高()
-'
-' 行高 宏
-'
 
-'
-    Selection.RowHeight = 22
-End Sub
