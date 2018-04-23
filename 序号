@@ -1,0 +1,38 @@
+Sub 序号()
+'
+' 序号 宏
+'
+
+'
+   Dim i,  k, a2, fl As Integer
+   i = 1
+   a2 = 7
+   fl = 22
+
+   k = 0
+nei:
+   
+   Do
+     i = i + 1
+     ActiveSheet.Cells(a2, fl).Value = i
+     a2 = a2 + 50
+   
+  
+    
+          
+     
+     Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
+      a2 = 7
+      
+     
+ 
+     
+     If ActiveSheet.Index <> Worksheets.Count Then
+         ActiveSheet.Next.Activate
+          GoTo nei
+       
+         Else
+         End If
+         
+ 
+End Sub
