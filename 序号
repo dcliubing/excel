@@ -1,16 +1,27 @@
-Sub 序号()
+
+
+Sub 序号4()
 '
 ' 序号 宏
 '
 
-'
-   Dim i,  k, a2, fl As Integer
+   Dim i, j, k, a2, fl As Integer
+   Dim x, y As String
    i = 1
    a2 = 7
-   fl = 22
+   x = "调节阀"
+   y = "开关阀"
+    fl = 22
 
-   k = 0
 nei:
+
+ If ActiveSheet.Cells(4, 4).Text = x Then
+  
+fl = 13
+ElseIf ActiveSheet.Cells(4, 4).Text = y Then
+fl = 13
+Else
+End If
    
    Do
      i = i + 1
@@ -32,7 +43,27 @@ nei:
           GoTo nei
        
          Else
-         End If
          
+nei2:
+
+
+                         If ActiveSheet.Cells(4, 4).Text = x Then
+  
+                        fl = 15
+                              ElseIf ActiveSheet.Cells(4, 4).Text = y Then
+                          fl = 15
+                          Else: fl = 25
+                       End If
+         Do
+              ActiveSheet.Cells(a2, fl).Value = i
+              a2 = a2 + 50
+              Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
+      a2 = 7
+      
+           If ActiveSheet.Index > 1 Then
+         ActiveSheet.Previous.Activate
+          GoTo nei2
+         End If
+         End If
  
 End Sub
