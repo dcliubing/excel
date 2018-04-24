@@ -1,4 +1,4 @@
-Sub 汇总222()
+Sub 汇总333333333333333333333()
 
 
 
@@ -56,14 +56,26 @@ j9 = 2
          ActiveSheet.Next.Activate
          GoTo nei
     End If
-
-a2 = 2
-fl = fl + 1
-j9 = 2
+    
+    
+Sheets(2).Activate
+Do
 yl = yl + 1
 
-If fl < 5 Then
+lh = yl
+Loop Until ActiveSheet.Cells(1, yl).Text = "压力"
+fl = 3
+
+yl = lh
+a2 = 2
+'fl = fl + 1
+j9 = 2
+'yl = yl + 1
+'MsgBox fl
+If fl = 3 Then
+'MsgBox yl
 GoTo nei2
+
 End If
 endd:
 End Sub
