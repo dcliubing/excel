@@ -1,0 +1,69 @@
+Sub 汇总222()
+
+
+
+      Dim NewName6 As String
+      NewName6 = InputBox("请输入新工作表的名称：")
+      On Error GoTo endd
+      Sheets(1).Activate
+      Sheets.add.Name = NewName6
+    '  Dim YBName As String
+    '  kvname = InputBox("请输入电磁流量计工作表的名称：")
+    '   On Error GoTo endd
+
+
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
+
+
+
+Dim arr() As Variant
+
+
+n9 = 2
+yl = 1 '数据源列
+fl = 1  '新表列
+j9 = n9  '数据源行
+i = 1   '数据源非空行
+ll = 0  '单个数据表页中包含几列仪表
+a2 = 2  '新表行
+fl = 1  '新表列
+dh = 0 '被删除行数
+
+nei2:
+Sheets(2).Activate
+nei:
+Do
+
+
+  
+    
+Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
+    
+j9 = j9 + 1
+a2 = a2 + 1
+   
+    
+Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(j9)) = 0
+
+
+
+ 
+'Loop Until ActiveSheet.Cells(j9, yl).Text = "总数量"
+
+j9 = 2
+
+     If ActiveSheet.Index <> Worksheets.Count Then
+         ActiveSheet.Next.Activate
+         GoTo nei
+    End If
+
+a2 = 2
+fl = fl + 1
+j9 = 2
+yl = yl + 1
+
+If fl < 5 Then
+GoTo nei2
+End If
+endd:
+End Sub
