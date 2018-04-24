@@ -1,4 +1,4 @@
-Sub 汇总333333333333333333333()
+Sub 汇4444444444444()
 
 
 
@@ -6,10 +6,8 @@ Sub 汇总333333333333333333333()
       NewName6 = InputBox("请输入新工作表的名称：")
       On Error GoTo endd
       Sheets(1).Activate
-      Sheets.add.Name = NewName6
-    '  Dim YBName As String
-    '  kvname = InputBox("请输入电磁流量计工作表的名称：")
-    '   On Error GoTo endd
+      Sheets.Add.Name = NewName6
+
 
 
 Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
@@ -28,14 +26,41 @@ ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
 fl = 1  '新表列
 dh = 0 '被删除行数
-
+lh = 0
 nei2:
 Sheets(2).Activate
 nei:
+
+Do
+lh = lh + 1
+If ActiveSheet.Cells(1, lh).Text = "温度" Then
+fl = 2
+GoTo nnn
+ElseIf ActiveSheet.Cells(1, lh).Text = "压力" Then
+
+fl = 3
+GoTo nnn
+End If
+
+
+Loop Until lh = 10
+ 
+
+
+nnn:
+
+
+ 
+yl = lh
+
+
+j9 = 2
+
+' MsgBox yl
 Do
 
 
-  
+
     
 Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
     
@@ -51,31 +76,19 @@ Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(j9)) = 0
 'Loop Until ActiveSheet.Cells(j9, yl).Text = "总数量"
 
 j9 = 2
+yl = 1
 
      If ActiveSheet.Index <> Worksheets.Count Then
          ActiveSheet.Next.Activate
+ 
+
+         
          GoTo nei
     End If
     
     
-Sheets(2).Activate
-Do
-yl = yl + 1
 
-lh = yl
-Loop Until ActiveSheet.Cells(1, yl).Text = "压力"
-fl = 3
 
-yl = lh
-a2 = 2
-'fl = fl + 1
-j9 = 2
-'yl = yl + 1
-'MsgBox fl
-If fl = 3 Then
-'MsgBox yl
-GoTo nei2
 
-End If
 endd:
 End Sub
