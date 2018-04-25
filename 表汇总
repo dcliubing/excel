@@ -7,27 +7,19 @@ Sub 汇wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww()
       On Error GoTo endd
       Sheets(1).Activate
       Sheets.add.Name = NewName6
-    '  Dim YBName As String
-    '  kvname = InputBox("请输入电磁流量计工作表的名称：")
-    '   On Error GoTo endd
-
-
-Dim j9, n9, yl, i, a2, ll, kk, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
 
 
 
-Dim arr() As Variant
+Dim j9,  yl, i, a2, ll, kk, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
 
 
-n9 = 2
-yl = 1 '数据源列
-fl = 1  '新表列
-j9 = n9  '数据源行
-i = 1   '数据源非空行
-ll = 0  '单个数据表页中包含几列仪表
-a2 = 2  '新表行
-fl = 1  '新表列
-dh = 0 '被删除行数
+yl = 1 
+fl = 1  
+j9 = 2 
+i = 1   
+ll = 0  
+a2 = 2  
+fl = 1  
 kk = 1
 
 nei2:
