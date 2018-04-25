@@ -42,17 +42,17 @@ kk = kk + 1
 
 If ActiveSheet.Cells(1, kk).Text = "数量" Then
 If fl = 2 Then
-MsgBox kk
+
 yl = kk
 End If
 ElseIf ActiveSheet.Cells(1, kk).Text = "温度" Then
 If fl = 3 Then
-MsgBox kk
+
 yl = kk
 End If
 ElseIf ActiveSheet.Cells(1, kk).Text = "压力" Then
 If fl = 4 Then
-MsgBox kk
+
 yl = kk
 End If
 End If
@@ -73,7 +73,7 @@ j9 = j9 + 1
 a2 = a2 + 1
    
     
-Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(j9)) = 0
+Loop Until ActiveSheet.Cells(j9, 1).Text = "总数量"
 
 
 
