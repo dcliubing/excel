@@ -40,21 +40,20 @@ nei:
 Do
 kk = kk + 1
 
-If ActiveSheet.Cells(1, kk).Text = "数量" Then
-If fl = 2 Then
+If ActiveSheet.Cells(1, kk).Text = "数量" And fl = 2 Then
+
 
 yl = kk
-End If
-ElseIf ActiveSheet.Cells(1, kk).Text = "温度" Then
-If fl = 3 Then
+
+ElseIf ActiveSheet.Cells(1, kk).Text = "温度" And fl = 3 Then
+
 
 yl = kk
-End If
-ElseIf ActiveSheet.Cells(1, kk).Text = "压力" Then
-If fl = 4 Then
+
+ElseIf ActiveSheet.Cells(1, kk).Text = "压力" And fl = 4 Then
 
 yl = kk
-End If
+
 End If
 
 
