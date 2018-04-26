@@ -1,4 +1,5 @@
-Sub 汇wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww()
+
+Sub a123333()
 
 
 
@@ -10,17 +11,17 @@ Sub 汇wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww()
 
 
 
-Dim j9,  yl, i, a2, ll, kk, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
+Dim j9, yl, i, a2, ll, kk, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
 
 
-yl = 1 
-fl = 1  
-j9 = 2 
-i = 1   
-ll = 0  
-a2 = 2  
-fl = 1  
-kk = 1
+yl = 1
+fl = 0
+j9 = 2
+i = 1
+ll = 0
+a2 = 2
+
+kk = 0
 
 nei2:
 Sheets(2).Activate
@@ -32,31 +33,34 @@ nei:
 Do
 kk = kk + 1
 
-If ActiveSheet.Cells(1, kk).Text = "数量" And fl = 2 Then
+If ActiveSheet.Cells(1, kk).Text = "数量" And fl = 1 Then
 
 
 yl = kk
 
-ElseIf ActiveSheet.Cells(1, kk).Text = "温度" And fl = 3 Then
-
-
-yl = kk
-
-ElseIf ActiveSheet.Cells(1, kk).Text = "压力" And fl = 4 Then
+ElseIf ActiveSheet.Cells(1, kk).Text = "温度" And fl = 2 Then
 
 yl = kk
 
+ElseIf ActiveSheet.Cells(1, kk).Text = "位号" And fl = 3 Then
+
+yl = kk
 End If
 
 
 
 Loop Until ActiveSheet.Cells(1, kk).Text = ""
-kk = 1
+kk = 0
+
+If fl = 0 Then
+GoTo nx
+End If
+
 
 Do
 
 
-  
+
     
 Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
     
@@ -64,12 +68,11 @@ j9 = j9 + 1
 a2 = a2 + 1
    
     
-Loop Until ActiveSheet.Cells(j9, 1).Text = "总数量"
+Loop Until ActiveSheet.Cells(j9, 1).Text = ""
 
 
 
  
-'Loop Until ActiveSheet.Cells(j9, yl).Text = "总数量"
 
 j9 = 2
 
@@ -78,14 +81,15 @@ j9 = 2
          
          GoTo nei
     End If
-
+nx:
 a2 = 2
 fl = fl + 1
+
 j9 = 2
 
 
 
-If fl < 5 Then
+If fl < 4 Then
 GoTo nei2
 End If
 endd:
