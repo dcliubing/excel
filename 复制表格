@@ -76,7 +76,9 @@ zs = 1
         
     j7 = j7 + 1
     Sheets(1).Cells(a2, fl).Value = Sheets(2).Cells(j9, yl).Text
-    
+         Sheets(1).Cells(a2, fl + 2).Value = Sheets(2).Cells(j9, yl + 3).Text   '待修改
+     
+      Sheets(1).Cells(a2, fl + 5).Value = Sheets(2).Cells(j9, yl + 7).Text   '待修改
    ' MsgBox j7
       
     a2 = a2 + 1
