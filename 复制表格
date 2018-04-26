@@ -1,25 +1,68 @@
-Sub 复制表格()
+Sub 复制表格-索引()
 
 
 
 
-Dim j, yl, i, a2, ll, kk, fl, kh, kh2, fl2, dh, lh, a3, lh2 As Integer
-Dim arr() As Variant '
-' 复制表格 宏
-'
+
+Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, zs2, lh2 As Integer
+
+'Dim att As String
+
+Dim arr() As Variant
+
+
+
+dh = 2
+
+j9 = 2
+
+a2 = 7
+
+fl = 1
+j7 = 0
+
+yl = 1
+
+
 ll = 1
 
-j = 5
-'
-i = 1
 
-Do
 
-i = i + 1
-lh = ll + 39
-lh2 = lh + 1
+i = 0
 
- '   Rows(ll).Select
+zs = 1
+  
+  Do
+   
+    zs = zs + 1
+    
+    Loop Until Application.WorksheetFunction.CountA(Sheets(2).Rows(zs)) = 0
+    
+    
+    
+    
+    zs2 = zs - 1
+    
+    j = zs2 \ 24
+    
+    If zs2 Mod 24 = 0 Then
+    
+    j = j - 1
+    
+    
+    End If
+    
+    'MsgBox j
+    
+    
+   ' GoTo endd
+  Do
+
+    i = i + 1
+    lh = ll + 39
+    lh2 = lh + 1
+
+
 
     Rows(ll & ":" & lh).Select
     Selection.Copy
@@ -27,12 +70,35 @@ lh2 = lh + 1
     Rows(lh2).Select
     ActiveSheet.Paste
 
-ll = ll + 40
+ 
+    
+    Do
+        
+    j7 = j7 + 1
+    Sheets(1).Cells(a2, fl).Value = Sheets(2).Cells(j9, yl).Text
+    
+   ' MsgBox j7
+      
+    a2 = a2 + 1
+    j9 = j9 + 1
+    
+    Loop Until j7 Mod 24 = 0
+    
+     a2 = a2 + 16
+     
+     ll = ll + 40
+    
+ 
+    
+    
+
+    Loop Until i = j + 1
+    
+    
+
+        Rows(ll & ":" & ll + 40).Select
+        Selection.Delete
 
 
-Loop Until i = j
-
-
-
-
+endd:
 End Sub
