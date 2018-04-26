@@ -1,0 +1,39 @@
+Sub 便利2018()
+
+
+
+     Dim NewName, newname2, i As String
+      newname2 = InputBox("请输入汇总表工作簿的名称：")
+      On Error GoTo endd
+Dim iFile As String
+iFile = ThisWorkbook.Path & "\" & newname2 & ".xls"
+Workbooks.Add
+ActiveWorkbook.SaveAs iFile, True
+'MsgBox "新建Excel工作薄完成," & vbCrLf & "完整路径及名称:" & vbCrLf & iFile
+        
+        NewName = InputBox("请输入数据表工作簿的名称：")
+        On Error GoTo endd
+        i = 0
+        
+       
+        
+     Workbooks(NewName & ".xls").Activate
+ 
+  '  Workbooks(NewName & ".xls").sh.Select
+     For Each sh In Worksheets    '数组
+   
+    If sh.Cells(4, 4).Value = 22 Then
+    
+    MsgBox 222
+    
+   
+    
+    ElseIf sh.Cells(4, 4).Value = 11 Then
+    
+    
+    MsgBox 111
+    
+    End If
+Next
+endd:
+End Sub
