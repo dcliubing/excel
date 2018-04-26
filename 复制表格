@@ -1,0 +1,38 @@
+Sub 复制表格()
+
+
+
+
+Dim j, yl, i, a2, ll, kk, fl, kh, kh2, fl2, dh, lh, a3, lh2 As Integer
+Dim arr() As Variant '
+' 复制表格 宏
+'
+ll = 1
+
+j = 5
+'
+i = 1
+
+Do
+
+i = i + 1
+lh = ll + 39
+lh2 = lh + 1
+
+ '   Rows(ll).Select
+
+    Rows(ll & ":" & lh).Select
+    Selection.Copy
+
+    Rows(lh2).Select
+    ActiveSheet.Paste
+
+ll = ll + 40
+
+
+Loop Until i = j
+
+
+
+
+End Sub
