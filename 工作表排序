@@ -1,0 +1,12 @@
+Sub 排序()
+
+
+i% = Sheets.Count
+On Error Resume Next
+For Each tmp In Array("北", "上", "广") '北上广为工作表名
+    t = Sheets(tmp).[a1]
+    MsgBox t
+    If Err = Empty Then Sheets(tmp).Move after:=Sheets(i) Else Err.Clear
+Next
+
+endd:
