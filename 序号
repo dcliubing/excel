@@ -1,6 +1,4 @@
-
-
-Sub 序号4()
+Sub 序号5()
 '
 ' 序号 宏
 '
@@ -11,6 +9,8 @@ Sub 序号4()
    a2 = 7
    x = "调节阀"
    y = "开关阀"
+   
+   Sheets(2).Select
     fl = 22
 
 nei:
@@ -20,7 +20,7 @@ nei:
 fl = 13
 ElseIf ActiveSheet.Cells(4, 4).Text = y Then
 fl = 13
-Else
+Else: fl = 22
 End If
    
    Do
