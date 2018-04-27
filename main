@@ -1,18 +1,73 @@
-Sub 电磁流量计2018()
+Dim newname, shn, newname2 As String
+Sub 工作簿生成()
 
+
+
+      newname2 = InputBox("请输入汇总表工作簿的名称：")
+      On Error GoTo endd
+Dim iFile As String
+iFile = ThisWorkbook.Path & "\" & newname2 & ".xls"
+Workbooks.add
+ActiveWorkbook.SaveAs iFile, True
+
+        
+        newname = InputBox("请输入数据表工作簿的名称：")
+        On Error GoTo endd
+ 
+        
+       
+        
+     Workbooks(newname & ".xls").Activate
+
+     For Each sh In Worksheets    '数组
+     
+        sh.Select
+   
+    If sh.Cells(4, 9).Value = "压力变送器" Then
+    
+  
+   Call 压变列表
+   
+    ElseIf sh.Cells(4, 9).Value = "电磁流量计" Then
+    
+
+    
+ Call 电磁列表
+    
+    ElseIf sh.Cells(4, 9).Value = "差压变送器(液位)" Then
+    
+ Call 差压液位列表
+    
+    ElseIf sh.Cells(4, 4).Value = "调节阀" Then
+    
+    
+ Call 调节阀列表
+     ElseIf sh.Cells(4, 9).Value = "气动切断阀" Then
+    
+    
+ Call 开关阀列表
+    
+    shn = ActiveSheet.Name
+
+    End If
+Next
+
+'MsgBox "新建工作薄," & vbCrLf & "完整路径及名称:" & vbCrLf & iFile
+endd:
+End Sub
+
+Sub 电磁列表()
 
       Dim NewName6 As String
-      NewName6 = InputBox("请输入新工作表的名称：")
-      On Error GoTo endd
-Sheets.Add.Name = NewName6
-      Dim YBName As String
-      kvname = InputBox("请输入电磁流量计工作表的名称：")
-      On Error GoTo endd
+      
+      NewName6 = "电磁"
+      
+      Workbooks(newname2 & ".xls").Sheets.add.Name = NewName6
+
 
 
 Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
 
-'Dim att As String
 
 Dim arr() As Variant
 
@@ -24,7 +79,6 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
-fl = 1  '新表列
 dh = 0 '被删除行数
 
 nei:
@@ -63,7 +117,7 @@ Do
 
   
     
-Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
+Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
     
     ll = ll + 1
     yl = yl + 6
@@ -79,7 +133,7 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
     
 
  
-Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
+Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
@@ -100,10 +154,10 @@ GoTo nei
 
 ee:
 
-'Sheets(NewName6).Select
+ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Sheets(NewName6).Rows(kh2)) = 0 Then
+ If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -205,10 +259,10 @@ ee:
  '自动列宽
         Selection.Columns.AutoFit
         
-                Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
+
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
         
-        Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
-        
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
         
         ' 加粗冻结 宏
         
@@ -229,19 +283,21 @@ ee:
     End With
     ActiveWindow.FreezePanes = True
         
-        
+                Workbooks(newname & ".xls").Activate '返回数据表文件
 endd:
 End Sub
 
-
-Sub 差压液位变送器2018()
+Sub 差压液位列表()
 
       Dim NewName6 As String
-      NewName6 = InputBox("请输入新工作表的名称：")
-      On Error GoTo endd
-Sheets.Add.Name = NewName6
-      Dim YBName As String
-      kvname = InputBox("请输入差压液位变送器工作表的名称：")
+      
+      NewName6 = "差压液位"
+      
+       Workbooks(newname2 & ".xls").Sheets.add.Name = NewName6
+
+
+
+      
       On Error GoTo endd
 
 
@@ -259,7 +315,7 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
-fl = 1  '新表列
+
 
 dh = 0 '被删除行数
 
@@ -292,7 +348,7 @@ Do
 
 
     
-Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
+Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
     
     ll = ll + 1
     yl = yl + 6
@@ -307,7 +363,7 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
    
         
   
-Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
+Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
@@ -328,9 +384,11 @@ GoTo nei
 
 ee:
 
+
+Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Sheets(NewName6).Rows(kh2)) = 0 Then
+ If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -431,13 +489,11 @@ ee:
  '自动列宽
         Selection.Columns.AutoFit
         
-        Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
+
         
-        Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
+                        Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
         
-        
-        
-        
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
         ' 加粗冻结 宏
         
  Range(Cells(1, 1), Cells(1, fl2)).Select
@@ -457,20 +513,18 @@ ee:
     End With
     ActiveWindow.FreezePanes = True
         
-        
+                Workbooks(newname & ".xls").Activate '返回数据表文件
 endd:
 End Sub
+Sub 压变列表()
 
-Sub 压力变送器2018()
+      Dim NewName6 As String
+      
+      NewName6 = "压变"
+      
+       Workbooks(newname2 & ".xls").Sheets.add.Name = NewName6
 
 
-    Dim NewName6 As String
-      NewName6 = InputBox("请输入新工作表的名称：")
-      On Error GoTo endd
-Sheets.Add.Name = NewName6
-      Dim YBName As String
-      kvname = InputBox("请输入压力变送器工作表的名称：")
-      On Error GoTo endd
 
 
 Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
@@ -487,7 +541,7 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
-fl = 1  '新表列
+
 dh = 0 '被删除行数
 
 nei:
@@ -527,7 +581,7 @@ Do
 
 
     
-Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
+Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
     
     ll = ll + 1
     yl = yl + 6
@@ -541,9 +595,7 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
    End If
    
     
-
-  
-Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
+Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
@@ -564,10 +616,10 @@ GoTo nei
 
 
 ee:
-
+Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Sheets(NewName6).Rows(kh2)) = 0 Then
+ If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -668,10 +720,10 @@ ee:
  '自动列宽
         Selection.Columns.AutoFit
         
+                Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
         
-                Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
         
-        Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
         
         ' 加粗冻结 宏
         
@@ -692,244 +744,21 @@ ee:
     End With
     ActiveWindow.FreezePanes = True
         
-        
-endd:
-
-End Sub
-
-
-Sub 开关阀2018()
-    Dim NewName6 As String
-      NewName6 = InputBox("请输入新工作表的名称：")
-      On Error GoTo endd
-Sheets.Add.Name = NewName6
-      Dim YBName As String
-      kvname = InputBox("请输入开关阀工作表的名称：")
-      On Error GoTo endd
-
-
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2  As Integer
-
-
-
-Dim arr() As Variant
-
-
-n9 = 9
-yl = 10 '数据源列
-fl = 1  '新表列
-j9 = n9  '数据源行
-i = 1   '数据源非空行
-ll = 0  '单个数据表页中包含几列仪表
-a2 = 2  '新表行
-fl = 1  '新表列
-dh = 0 '被删除行数
-
-nei:
-
-
-If n9 > 9 And n9 < 16 Then
-GoTo jixu
-
-ElseIf n9 > 16 And n9 < 20 Then
-GoTo jixu
-
-ElseIf n9 > 23 And n9 < 28 Then
-GoTo jixu
-
-
-ElseIf n9 > 31 And n9 < 35 Then
-GoTo jixu
-
-
-ElseIf n9 = 45 Then
-GoTo ee
-
-Else: GoTo jia
-End If
-
-jixu:
-
-Do
-
-
-    
-Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
-    
-    ll = ll + 1
-    yl = yl + 6
-  
-    a2 = a2 + 1
-   If ll Mod 3 = 0 Then
-   j9 = j9 + 50
-  i = i + 50
-   yl = 10
-
-   End If
-   
-    
-
-  
-Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
-
-j9 = n9
-kh = a2
- i = 1
- fl2 = fl
- fl = fl + 1
-
-
-yl = 10
-ll = 0
-a2 = 2
-jia:
-n9 = n9 + 1
-
-GoTo nei
-
-
-
-
-ee:
-
- '空行
- For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Sheets(NewName6).Rows(kh2)) = 0 Then
- dh = dh + 1
- Rows(kh2).Delete
- End If
- Next kh2
- 
- lh = kh - dh   '新表最终行数
- lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "压力", "温度", "阀门形式", "公称通径", "阀体材质", "阀芯材质", "法兰标准及等级", "法兰尺寸及密封面")
-
- Range(Cells(1, 1), Cells(1, fl2)) = arr
- 
- Range(Cells(1, 1), Cells(lh, fl2)).Select
-     Selection.Borders(xlDiagonalDown).LineStyle = xlNone
-    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
-    With Selection.Borders(xlEdgeLeft)
-        .LineStyle = xlContinuous
-        .ColorIndex = 0
-        .TintAndShade = 0
-        .Weight = xlThin
-    End With
-    With Selection.Borders(xlEdgeTop)
-        .LineStyle = xlContinuous
-        .ColorIndex = 0
-        .TintAndShade = 0
-        .Weight = xlThin
-    End With
-    With Selection.Borders(xlEdgeBottom)
-        .LineStyle = xlContinuous
-        .ColorIndex = 0
-        .TintAndShade = 0
-        .Weight = xlThin
-    End With
-    With Selection.Borders(xlEdgeRight)
-        .LineStyle = xlContinuous
-        .ColorIndex = 0
-        .TintAndShade = 0
-        .Weight = xlThin
-    End With
-    With Selection.Borders(xlInsideVertical)
-        .LineStyle = xlContinuous
-        .ColorIndex = 0
-        .TintAndShade = 0
-        .Weight = xlThin
-    End With
-    With Selection.Borders(xlInsideHorizontal)
-        .LineStyle = xlContinuous
-        .ColorIndex = 0
-        .TintAndShade = 0
-        .Weight = xlThin
-    End With
-    
-    ' 行高 宏
-'
-
-'
-    Selection.RowHeight = 22
-    
-    '字体设置
-     With Selection.Font
-        .Name = "宋体"
-        .Size = 9
-        .Strikethrough = False
-        .Superscript = False
-        .Subscript = False
-        .OutlineFont = False
-        .Shadow = False
-        .Underline = xlUnderlineStyleNone
-        .ColorIndex = xlAutomatic
-        .TintAndShade = 0
-        .ThemeFont = xlThemeFontNone
-    End With
- ' 居中
-'
-
-'
-    With Selection
-        .HorizontalAlignment = xlCenter
-        .VerticalAlignment = xlCenter
-        .WrapText = False
-        .Orientation = 0
-        .AddIndent = False
-        .IndentLevel = 0
-        .ShrinkToFit = False
-        .ReadingOrder = xlContext
-        .MergeCells = False
-    End With
-    With Selection
-        .HorizontalAlignment = xlCenter
-        .VerticalAlignment = xlCenter
-        .WrapText = False
-        .Orientation = 0
-        .AddIndent = False
-        .IndentLevel = 0
-        .ShrinkToFit = False
-        .ReadingOrder = xlContext
-        .MergeCells = False
-    End With
- '自动列宽
-        Selection.Columns.AutoFit
-        
-        
-                Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
-        
-        Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
-        
-        ' 加粗冻结 宏
-        
- Range(Cells(1, 1), Cells(1, fl2)).Select
-
-'
-    Selection.Font.Bold = True
-    With Selection.Interior
-        .Pattern = xlSolid
-        .PatternColorIndex = xlAutomatic
-        .ThemeColor = xlThemeColorAccent3
-        .TintAndShade = 0.599993896298105
-        .PatternTintAndShade = 0
-    End With
-    With ActiveWindow
-        .SplitColumn = 0
-        .SplitRow = 1
-    End With
-    ActiveWindow.FreezePanes = True
-        
-        
+        Workbooks(newname & ".xls").Activate
 endd:
 End Sub
+Sub 调节阀列表()
 
-Sub 调节阀2018()
- Dim NewName6 As String
-      NewName6 = InputBox("请输入新工作表的名称：")
-      On Error GoTo endd
-Sheets.Add.Name = NewName6
-      Dim YBName As String
-      kvname = InputBox("请输入调节阀工作表的名称：")
+
+
+      Dim NewName6 As String
+      
+      NewName6 = "调节阀"
+      
+       Workbooks(newname2 & ".xls").Sheets.add.Name = NewName6
+
+
+
       On Error GoTo endd
 
 
@@ -981,9 +810,7 @@ jixu:
 
 Do
 
-
-    
-Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
+Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
     
 
   
@@ -993,7 +820,8 @@ Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
  i = i + 50
 
   
-Loop Until Application.WorksheetFunction.CountA(Sheets(kvname).Rows(i)) = 0
+ 
+Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 
 j9 = n9
 kh = a2
@@ -1013,10 +841,10 @@ GoTo nei
 
 
 ee:
-
+Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Sheets(NewName6).Rows(kh2)) = 0 Then
+ If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -1114,13 +942,14 @@ ee:
         .ReadingOrder = xlContext
         .MergeCells = False
     End With
+
  '自动列宽
         Selection.Columns.AutoFit
         
+                Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
         
-                Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
         
-        Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
         
         ' 加粗冻结 宏
         
@@ -1141,7 +970,231 @@ ee:
     End With
     ActiveWindow.FreezePanes = True
         
-        
+        Workbooks(newname & ".xls").Activate
 endd:
 End Sub
 
+Sub 开关阀列表()
+      Dim NewName6 As String
+      
+      NewName6 = "开关阀"
+      
+       Workbooks(newname2 & ".xls").Sheets.add.Name = NewName6
+
+
+
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2  As Integer
+
+
+
+Dim arr() As Variant
+
+
+n9 = 9
+yl = 10 '数据源列
+fl = 1  '新表列
+j9 = n9  '数据源行
+i = 1   '数据源非空行
+ll = 0  '单个数据表页中包含几列仪表
+a2 = 2  '新表行
+fl = 1  '新表列
+dh = 0 '被删除行数
+
+nei:
+
+
+If n9 > 9 And n9 < 16 Then
+GoTo jixu
+
+ElseIf n9 > 16 And n9 < 20 Then
+GoTo jixu
+
+ElseIf n9 > 23 And n9 < 28 Then
+GoTo jixu
+
+
+ElseIf n9 > 31 And n9 < 35 Then
+GoTo jixu
+
+
+ElseIf n9 = 45 Then
+GoTo ee
+
+Else: GoTo jia
+End If
+
+jixu:
+
+Do
+
+
+    
+Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
+    
+    
+    ll = ll + 1
+    yl = yl + 6
+  
+    a2 = a2 + 1
+   If ll Mod 3 = 0 Then
+   j9 = j9 + 50
+  i = i + 50
+   yl = 10
+
+   End If
+   
+    
+
+ 
+Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
+
+j9 = n9
+kh = a2
+ i = 1
+ fl2 = fl
+ fl = fl + 1
+
+
+yl = 10
+ll = 0
+a2 = 2
+jia:
+n9 = n9 + 1
+
+GoTo nei
+
+
+
+
+ee:
+Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
+ '空行
+ For kh2 = kh To 2 Step -1
+ If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+ dh = dh + 1
+ Rows(kh2).Delete
+ End If
+ Next kh2
+ 
+ lh = kh - dh   '新表最终行数
+ lh2 = lh + 1
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "压力", "温度", "阀门形式", "公称通径", "阀体材质", "阀芯材质", "法兰标准及等级", "法兰尺寸及密封面")
+
+ Range(Cells(1, 1), Cells(1, fl2)) = arr
+ 
+ Range(Cells(1, 1), Cells(lh, fl2)).Select
+     Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    
+    ' 行高 宏
+'
+
+'
+    Selection.RowHeight = 22
+    
+    '字体设置
+     With Selection.Font
+        .Name = "宋体"
+        .Size = 9
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ColorIndex = xlAutomatic
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+ ' 居中
+'
+
+'
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+  '自动列宽
+        Selection.Columns.AutoFit
+        
+                Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
+        
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
+        
+        
+        ' 加粗冻结 宏
+        
+ Range(Cells(1, 1), Cells(1, fl2)).Select
+
+'
+    Selection.Font.Bold = True
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent3
+        .TintAndShade = 0.599993896298105
+        .PatternTintAndShade = 0
+    End With
+    With ActiveWindow
+        .SplitColumn = 0
+        .SplitRow = 1
+    End With
+    ActiveWindow.FreezePanes = True
+        
+        Workbooks(newname & ".xls").Activate
+endd:
+End Sub
