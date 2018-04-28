@@ -151,7 +151,7 @@ Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
- fl2 = fl
+ fl2 = fl + 1
  fl = fl + 1
 
 
@@ -179,8 +179,11 @@ ee:
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "公称通径", "本体材质", "衬里材质", "电极材质", "法兰标准", "法兰尺寸", "接地环材质", "输出信号", "精度", "电源", "安装形式")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "公称通径", "本体材质", "衬里材质", "电极材质", "法兰标准", "法兰尺寸", "接地环材质", "输出信号", "精度", "电源", "安装形式", "仪表类型")
 
+Range(Cells(2, fl), Cells(lh, fl)) = "电磁流量计"
+
+ 
  Range(Cells(1, 1), Cells(1, fl2)) = arr
  
  Range(Cells(1, 1), Cells(lh, fl2)).Select
@@ -288,7 +291,7 @@ Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
- fl2 = fl
+ fl2 = fl + 1
  fl = fl + 1
 
 
@@ -317,9 +320,12 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "设备位号", "介质", "压力", "温度", "量程", "精度", "输出信号", "测量元件材质", "密封膜片材质", "法兰标准及等级", "法兰尺寸及密封面")
+ arr = Array("位号", "数量", "用途", "PID号", "设备位号", "介质", "压力", "温度", "量程", "精度", "输出信号", "测量元件材质", "密封膜片材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型")
+
+Range(Cells(2, fl), Cells(lh, fl)) = "差压液位变送器"
 
  Range(Cells(1, 1), Cells(1, fl2)) = arr
+ 
  
  Range(Cells(1, 1), Cells(lh, fl2)).Select
  
@@ -432,7 +438,7 @@ Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
- fl2 = fl
+ fl2 = fl + 1
  fl = fl + 1
 
 
@@ -460,7 +466,9 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "量程", "输出信号", "测量元件材质", "密封膜片材质", "法兰标准及等级", "法兰尺寸及密封面", "法兰材质")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "量程", "输出信号", "测量元件材质", "密封膜片材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型")
+ 
+ Range(Cells(2, fl), Cells(lh, fl)) = "压力变送器"
 
  Range(Cells(1, 1), Cells(1, fl2)) = arr
  
@@ -566,7 +574,7 @@ Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
- fl2 = fl
+ fl2 = fl + 1
  fl = fl + 1
 
 
@@ -592,7 +600,9 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "温度", "压力", "阀门形式", "阀座尺寸", "阀体材质", "阀芯材质")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "温度", "压力", "阀门形式", "阀座尺寸", "阀体材质", "阀芯材质", "仪表类型")
+
+Range(Cells(2, fl), Cells(lh, fl)) = "调节阀"
 
  Range(Cells(1, 1), Cells(1, fl2)) = arr
  
@@ -699,7 +709,7 @@ Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 j9 = n9
 kh = a2
  i = 1
- fl2 = fl
+ fl2 = fl + 1
  fl = fl + 1
 
 
@@ -726,7 +736,10 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "压力", "温度", "阀门形式", "公称通径", "阀体材质", "阀芯材质", "法兰标准及等级", "法兰尺寸及密封面")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "压力", "温度", "阀门形式", "公称通径", "阀体材质", "阀芯材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型")
+
+Range(Cells(2, fl), Cells(lh, fl)) = "气动切断阀"
+
 
  Range(Cells(1, 1), Cells(1, fl2)) = arr
  
@@ -987,6 +1000,9 @@ ElseIf ActiveSheet.Cells(1, kk).Text = "压力" And fl = 5 Then
 
 yl = kk
 
+ElseIf ActiveSheet.Cells(1, kk).Text = "仪表类型" And fl = 6 Then
+
+yl = kk
 
 
 
@@ -1036,23 +1052,23 @@ j9 = 2
 
 
 
-If fl < 6 Then
+If fl < 7 Then
 GoTo nei2
 End If
 
 Sheets(1).Activate
 
- arr = Array("位号", "数量", "用途", "温度", "压力")
-  Range(Cells(1, 1), Cells(1, 5)) = arr
+ arr = Array("位号", "数量", "用途", "温度", "压力", "仪表类型")
+  Range(Cells(1, 1), Cells(1, 6)) = arr
 
   Sheets(1).Cells(a3, 1).Value = "总数量"
         
         Sheets(1).Cells(a3, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(a3, 2)))
-    Range(Cells(1, 1), Cells(a3 - 1, 5)).Select
+    Range(Cells(1, 1), Cells(a3 - 1, 6)).Select
     
     Call 格式整理
 
-       Range(Cells(1, 1), Cells(a3, 5)).Select
+       Range(Cells(1, 1), Cells(a3, 6)).Select
   
         Selection.Columns.AutoFit
         
@@ -1060,8 +1076,139 @@ Sheets(1).Activate
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, 5)).Select
+ Range(Cells(1, 1), Cells(1, 6)).Select
  
     Call 首行格式
     
     End Sub
+    
+  
+
+
+  Sub 索引表生成()
+    
+    Dim suu, indel As String
+
+Application.ScreenUpdating = False
+
+      suu = InputBox("请输入汇总表工作簿的名称：")
+      On Error GoTo endd
+
+      indel = InputBox("请输入索引表工作簿的名称：")
+      On Error GoTo endd
+
+Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, zs2, lh2 As Integer
+
+'Dim att As String
+
+Dim arr() As Variant
+
+
+
+dh = 2
+
+j9 = 2
+
+a2 = 5
+
+fl = 3
+j7 = 0
+
+yl = 1
+
+
+ll = 1
+
+
+
+i = 0
+
+zs = 1
+
+     Workbooks(suu & ".xls").Activate
+  
+  Do
+   
+    zs = zs + 1
+    
+   Loop Until Application.WorksheetFunction.CountA(Sheets("汇总表").Rows(zs)) = 0
+  '   Loop Until Workbooks(suu & ".xls").Sheets("汇总表").Cells(zs, 1) = "总数量"
+    
+    
+    
+    zs2 = zs - 1
+    
+    j = zs2 \ 28
+    
+    If zs2 Mod 28 = 0 Then
+    
+    j = j - 1  '需要复制次数
+    
+    
+    End If
+    
+    'MsgBox j
+    
+    
+   ' GoTo endd
+   
+        Workbooks(indel & ".xls").Activate
+  Do
+
+    i = i + 1
+    lh = ll + 39
+    lh2 = lh + 1
+
+
+
+    Rows(ll & ":" & lh).Select
+    Selection.Copy
+
+    Rows(lh2).Select
+    ActiveSheet.Paste
+
+ 
+    
+    Do
+        
+    j7 = j7 + 1
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 6).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+    
+      '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
+     
+      
+ 
+      
+    a2 = a2 + 1
+    j9 = j9 + 1
+    
+    Loop Until j7 Mod 28 = 0
+    
+     a2 = a2 + 12  '相邻索引表数据间隔
+     
+     ll = ll + 40
+    
+ 
+    
+    
+
+    Loop Until i = j + 1
+    
+ '  ActiveSheet.Rows(a2 - 37) = ""   '总数量文字删除
+ For kh = 1 To a2 Step 1
+ 
+  If ActiveSheet.Cells(kh, 3) = "总数量" Then
+  
+  ActiveSheet.Rows(kh) = ""
+  
+ End If
+
+        Rows(ll & ":" & ll + 40).Select
+        Selection.Delete
+
+Next
+endd:
+Application.ScreenUpdating = True
+End Sub
