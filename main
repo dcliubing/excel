@@ -1000,7 +1000,11 @@ ElseIf ActiveSheet.Cells(1, kk).Text = "压力" And fl = 5 Then
 
 yl = kk
 
-ElseIf ActiveSheet.Cells(1, kk).Text = "仪表类型" And fl = 6 Then
+ElseIf ActiveSheet.Cells(1, kk).Text = "量程" And fl = 6 Then
+
+yl = kk
+
+ElseIf ActiveSheet.Cells(1, kk).Text = "仪表类型" And fl = 7 Then
 
 yl = kk
 
@@ -1010,11 +1014,19 @@ End If
 
 
 
+
+
 Loop Until ActiveSheet.Cells(1, kk).Text = ""
 kk = 0
 
 If fl = 0 Then
 GoTo nx
+End If
+
+If ActiveSheet.Name = "调节阀" And fl = 6 Then
+
+yl = 27  '空列排除调节阀量程循环错误
+
 End If
 
 
@@ -1052,23 +1064,23 @@ j9 = 2
 
 
 
-If fl < 7 Then
+If fl < 8 Then
 GoTo nei2
 End If
 
 Sheets(1).Activate
 
- arr = Array("位号", "数量", "用途", "温度", "压力", "仪表类型")
-  Range(Cells(1, 1), Cells(1, 6)) = arr
+ arr = Array("位号", "数量", "用途", "温度", "压力", "量程", "仪表类型")
+  Range(Cells(1, 1), Cells(1, 7)) = arr
 
   Sheets(1).Cells(a3, 1).Value = "总数量"
         
         Sheets(1).Cells(a3, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(a3, 2)))
-    Range(Cells(1, 1), Cells(a3 - 1, 6)).Select
+    Range(Cells(1, 1), Cells(a3 - 1, 7)).Select
     
     Call 格式整理
 
-       Range(Cells(1, 1), Cells(a3, 6)).Select
+       Range(Cells(1, 1), Cells(a3, 7)).Select
   
         Selection.Columns.AutoFit
         
@@ -1076,7 +1088,7 @@ Sheets(1).Activate
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, 6)).Select
+ Range(Cells(1, 1), Cells(1, 7)).Select
  
     Call 首行格式
     
@@ -1112,12 +1124,14 @@ j9 = 2
 a2 = 5
 
 fl = 3
-
 j7 = 0
 
 yl = 1
 
+
 ll = 1
+
+
 
 i = 0
 
@@ -1205,7 +1219,266 @@ zs = 0
 
         Rows(ll & ":" & ll + 40).Select
         Selection.Delete
+        Rows(1).Select
+Next
+endd:
+Application.ScreenUpdating = True
+End Sub
 
+
+  Sub IO表生成()
+    
+    Dim suu, indel As String
+
+Application.ScreenUpdating = False
+
+      suu = InputBox("请输入汇总表工作簿的名称：")
+      On Error GoTo endd
+
+      indel = InputBox("请输入IO表工作簿的名称：")
+      On Error GoTo endd
+
+Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, zs2, lh2 As Integer
+
+'Dim att As String
+
+Dim arr() As Variant
+
+
+
+dh = 2
+
+j9 = 2
+
+a2 = 9
+
+fl = 2
+j7 = 0
+
+yl = 1
+
+
+ll = 1
+
+
+
+i = 0
+
+zs = 0
+
+     Workbooks(suu & ".xls").Activate
+  
+  Do
+   
+    zs = zs + 1
+    
+   Loop Until Application.WorksheetFunction.CountA(Sheets("汇总表").Rows(zs)) = 0
+
+    
+    
+    
+    zs2 = zs - 1
+    
+    j = zs2 \ 25
+    
+    If zs2 Mod 25 = 0 Then
+    
+    j = j - 1  '需要复制次数
+    
+    
+    End If
+    
+    'MsgBox j
+    
+    
+   ' GoTo endd
+   
+        Workbooks(indel & ".xls").Activate
+  Do
+
+    i = i + 1
+    lh = ll + 38
+    lh2 = lh + 1
+
+
+
+    Rows(ll & ":" & lh).Select
+    Selection.Copy
+
+    Rows(lh2).Select
+    ActiveSheet.Paste
+
+ 
+    
+    Do
+        
+    j7 = j7 + 1
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+   ' Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 10).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+    
+      '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
+     
+      
+ 
+      
+    a2 = a2 + 1
+    j9 = j9 + 1
+    
+    Loop Until j7 Mod 25 = 0
+    
+     a2 = a2 + 14  '相邻IO表上下数据行间隔
+     
+     ll = ll + 39
+    
+ 
+    
+    
+
+    Loop Until i = j + 1
+    
+
+ For kh = 1 To a2 Step 1
+ 
+  If ActiveSheet.Cells(kh, 2) = "总数量" Then
+  
+  ActiveSheet.Rows(kh) = ""
+  
+ End If
+
+        Rows(ll & ":" & ll + 39).Select
+        Selection.Delete
+        Rows(1).Select
+Next
+endd:
+Application.ScreenUpdating = True
+End Sub
+
+
+
+  Sub 监控表生成()
+    
+    Dim suu, indel As String
+
+Application.ScreenUpdating = False
+
+      suu = InputBox("请输入汇总表工作簿的名称：")
+      On Error GoTo endd
+
+      indel = InputBox("请输入监控表工作簿的名称：")
+      On Error GoTo endd
+
+Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, zs2, lh2 As Integer
+
+'Dim att As String
+
+Dim arr() As Variant
+
+
+
+dh = 2
+
+j9 = 2
+
+a2 = 7
+
+fl = 3
+j7 = 0
+
+yl = 1
+
+
+ll = 1
+
+
+
+i = 0
+
+zs = 0
+
+     Workbooks(suu & ".xls").Activate
+  
+  Do
+   
+    zs = zs + 1
+    
+   Loop Until Application.WorksheetFunction.CountA(Sheets("汇总表").Rows(zs)) = 0
+  '   Loop Until Workbooks(suu & ".xls").Sheets("汇总表").Cells(zs, 1) = "总数量"
+    
+    
+    
+    zs2 = zs - 1
+    
+    j = zs2 \ 27
+    
+    If zs2 Mod 27 = 0 Then
+    
+    j = j - 1  '需要复制次数
+    
+    
+    End If
+    
+    'MsgBox j
+    
+    
+   ' GoTo endd
+   
+        Workbooks(indel & ".xls").Activate
+  Do
+
+    i = i + 1
+    lh = ll + 39
+    lh2 = lh + 1
+
+
+
+    Rows(ll & ":" & lh).Select
+    Selection.Copy
+
+    Rows(lh2).Select
+    ActiveSheet.Paste
+
+ 
+    
+    Do
+        
+    j7 = j7 + 1
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+    
+      '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
+     
+      
+ 
+      
+    a2 = a2 + 1
+    j9 = j9 + 1
+    
+    Loop Until j7 Mod 27 = 0
+    
+     a2 = a2 + 13  '相邻索引表数据间隔
+     
+     ll = ll + 40
+    
+ 
+    
+    
+
+    Loop Until i = j + 1
+    
+ '  ActiveSheet.Rows(a2 - 37) = ""   '总数量文字删除
+ For kh = 1 To a2 Step 1
+ 
+  If ActiveSheet.Cells(kh, 3) = "总数量" Then
+  
+  ActiveSheet.Rows(kh) = ""
+  
+ End If
+
+        Rows(ll & ":" & ll + 40).Select
+        Selection.Delete
+        Rows(1).Select
 Next
 endd:
 Application.ScreenUpdating = True
