@@ -1112,18 +1112,16 @@ j9 = 2
 a2 = 5
 
 fl = 3
+
 j7 = 0
 
 yl = 1
 
-
 ll = 1
-
-
 
 i = 0
 
-zs = 1
+zs = 0
 
      Workbooks(suu & ".xls").Activate
   
