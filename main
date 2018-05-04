@@ -923,6 +923,8 @@ End If
   Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
   
   
+  ActiveSheet.Cells(a2, 1) = "总数量"
+  
  arr = Array("位号", "介质", "压力", "温度", "保护管材料", "PID号", "用途", "分度号", "螺纹规格", "法兰标准及等级", "法兰尺寸及密封面", "数量", "量程", "仪表类型")
 
  Range(Cells(2, 14), Cells(n9 - 1, 14)) = "热电阻"
@@ -1227,7 +1229,7 @@ j9 = j9 + 1
 a2 = a2 + 1
    
     
-Loop Until ActiveSheet.Cells(j9, 1).Text = ""
+Loop Until ActiveSheet.Cells(j9, 1).Text = "总数量"
 
 
 
@@ -1646,7 +1648,7 @@ zs = 0
     j7 = j7 + 1
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
-    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
      
