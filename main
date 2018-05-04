@@ -1227,7 +1227,7 @@ j9 = j9 + 1
 a2 = a2 + 1
    
     
-Loop Until ActiveSheet.Cells(j9, 1).Text = "总数量" Or ActiveSheet.Cells(j9, 1).Text = ""
+Loop Until ActiveSheet.Cells(j9, 1).Text = ""
 
 
 
@@ -1368,11 +1368,26 @@ zs = 0
  
     
     Do
+    
+    
+NEI5:
+        
+   '     If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TE*" Then
+        
+      
+        
+    '    j9 = j9 + 1
+        
+    '    GoTo NEI5
+        
+        
+    '    End If
+        
         
     j7 = j7 + 1
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 6).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
-    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
      
@@ -1500,7 +1515,7 @@ zs = 0
         
     j7 = j7 + 1
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
-    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
    ' Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 10).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
@@ -1631,7 +1646,7 @@ zs = 0
     j7 = j7 + 1
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
-    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
      
