@@ -38,7 +38,7 @@ ActiveWorkbook.SaveAs iFile, True
     
  Call 差压液位列表
     
-    ElseIf sh.Cells(4, 4).Value = "调节阀" Then
+    ElseIf sh.Cells(4, 4).Value Like "调节阀" Then
     
     
  Call 调节阀列表
@@ -47,11 +47,16 @@ ActiveWorkbook.SaveAs iFile, True
     
  Call 开关阀列表
  
-      ElseIf sh.Cells(4, 9).Value = "热电阻" Then
+      ElseIf sh.Cells(4, 9).Value Like "热电阻" Then
     
     
  Call 热电阻列表
   
+    
+          ElseIf sh.Cells(4, 9).Value Like "*压力表*" Then
+    
+    
+ Call 压力表列表
     
     shn = ActiveSheet.Name
 
@@ -62,7 +67,7 @@ Next
 '工作表排序
 i% = Sheets.Count
 On Error Resume Next
-For Each tmp In Array("热电阻", "压变", "电磁", "差压液位", "调节阀", "开关阀") '工作表名
+For Each tmp In Array("热电阻", "压力表", "压变", "电磁", "差压液位", "调节阀", "开关阀") '工作表名
     t = Sheets(tmp).[a1]
     
     If Err = Empty Then Sheets(tmp).Move after:=Sheets(i) Else Err.Clear
@@ -771,6 +776,193 @@ Call 首行格式
         Workbooks(newname & ".xls").Activate
 endd:
 End Sub
+Sub 压力表列表()
+
+
+
+Application.ScreenUpdating = False
+      Dim NewName6 As String
+      
+  NewName6 = "压力表"
+      
+       Workbooks(newname2 & ".xls").Sheets.Add.Name = NewName6
+       
+       
+   
+
+
+Dim j9, n9, yl, i, a2, ll, tt, j10, ss, zz, fl, kh, kh2, fl2, dh, lh, lh2, emp As Integer
+
+'Dim att As String
+
+Dim arr() As Variant
+
+
+
+yl = 1 '数据源列
+tt = 0
+j9 = 12  '数据源行
+i = 1   '数据源非空行
+ll = 0  '单个数据表页中包含几列仪表
+a2 = 2  '新表行
+fl = 1  '新表列
+emp = 0
+dh = 0 '被删除行数
+
+
+j10 = 30
+j14 = 31
+j15 = 33
+j11 = 37
+j12 = 38
+j13 = 39
+
+
+nei:
+
+Do
+
+If Application.WorksheetFunction.CountA(ActiveSheet.Rows(j9)) = 0 Then
+    
+GoTo nei2
+
+End If
+    
+    
+    Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
+    
+      Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 8).Value = ActiveSheet.Cells(j10, 12).Text
+    
+    
+        Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 9).Value = ActiveSheet.Cells(j14, 12).Text
+    
+         Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 10).Value = ActiveSheet.Cells(j15, 12).Text
+    
+         Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 11).Value = ActiveSheet.Cells(j11, 12).Text
+         
+         Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 12).Value = ActiveSheet.Cells(j12, 12).Text
+         Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 13).Value = ActiveSheet.Cells(j13, 12).Text
+    
+
+               
+               
+   a2 = a2 + 1
+nei2:
+
+               
+               j9 = j9 + 1
+
+
+
+tt = tt + 1
+     
+
+
+    
+Loop Until tt Mod 14 = 0
+
+
+j15 = j15 + 50
+
+j14 = j15 + 50
+
+   
+   j13 = j13 + 50
+   
+   
+   j12 = j12 + 50
+
+
+
+  j11 = j11 + 50
+
+
+ j10 = j10 + 50
+   
+   
+    j9 = j9 + 36
+    
+    i = i + 50
+    
+    
+ 
+
+If Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0 Then
+
+     Do
+         yl = yl + 1
+         
+         If yl = 4 Or yl = 8 Or yl = 11 Or yl = 17 Or yl = 21 Or yl = 24 Then
+         
+        
+         
+         j9 = 12
+         
+         j10 = 30
+         
+         j11 = 37
+         
+         j12 = 38
+         
+         j13 = 39
+         
+         
+         j14 = 31
+         
+         
+         j15 = 33
+         
+         
+          n9 = a2
+         
+         fl = fl + 1
+         
+         i = 0
+         
+         a2 = 2
+         
+         GoTo nei
+         
+         End If
+         
+    Loop Until yl = 25
+    
+    Else: GoTo nei
+    
+End If
+
+  Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
+  
+  
+  ActiveSheet.Cells(a2, 1) = "总数量"
+  
+ arr = Array("位号", "介质", "温度", "压力", "量程", "PID号", "用途", "测量元件形式", "表头直径", "测量元件材质", "螺纹规格", "法兰标准及等级", "法兰尺寸及密封面", "数量", "仪表类型")
+
+ Range(Cells(2, 15), Cells(n9 - 1, 15)) = "就地压力表"
+
+Range(Cells(1, 1), Cells(1, 15)) = arr
+
+ Range(Cells(1, 1), Cells(a2 - 1, 15)).Select
+ 
+ Call 格式整理
+ 
+'自动列宽
+     Selection.Columns.AutoFit
+        
+
+
+        
+    ' 加粗冻结 宏
+        
+ Range(Cells(1, 1), Cells(1, 15)).Select
+
+ Call 首行格式
+
+        
+ Workbooks(newname & ".xls").Activate '返回数据表文件
+        
+endd:
+End Sub
 Sub 热电阻列表()
 
 
@@ -1198,6 +1390,8 @@ yl = kk
 
 
 
+
+
 End If
 
 
@@ -1372,7 +1566,7 @@ zs = 0
     Do
     
     
-NEI5:
+nei5:
         
    '     If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TE*" Then
         
@@ -1441,7 +1635,7 @@ Application.ScreenUpdating = False
       indel = InputBox("请输入IO表工作簿的名称：")
       On Error GoTo endd
 
-Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, zs2, lh2 As Integer
+Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, jx, zs, zs2, lh2 As Integer
 
 'Dim att As String
 
@@ -1463,7 +1657,7 @@ yl = 1
 
 ll = 1
 
-
+jx = 0
 
 i = 0
 
@@ -1475,12 +1669,30 @@ zs = 0
    
     zs = zs + 1
     
+         
+      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Then
+     
+     
+     jx = jx + 1
+     
+         
+    
+    End If
+    
+    
+      j9 = j9 + 1
+    
    Loop Until Application.WorksheetFunction.CountA(Sheets("汇总表").Rows(zs)) = 0
 
     
+    j9 = 2
+
     
+    zs2 = zs - 3  '汇总表有效数据行数
     
-    zs2 = zs - 1
+    zs2 = zs2 - jx   '汇总表排除PG后有效数据行数
+    
+ MsgBox zs2
     
     j = zs2 \ 25
     
@@ -1514,6 +1726,27 @@ zs = 0
  
     
     Do
+    
+    
+    
+nei5:
+        
+              If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Then
+        
+      
+        
+       j9 = j9 + 1
+        
+    GoTo nei5
+    
+  
+        
+       End If
+         
+     
+
+        
+        
         
     j7 = j7 + 1
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
@@ -1549,12 +1782,17 @@ zs = 0
   
  End If
 
+
+Next
+
+
         Rows(ll & ":" & ll + 39).Select
         Selection.Delete
         Rows(1).Select
-Next
 endd:
 Application.ScreenUpdating = True
+
+
 End Sub
 
 
@@ -1571,7 +1809,7 @@ Application.ScreenUpdating = False
       indel = InputBox("请输入监控表工作簿的名称：")
       On Error GoTo endd
 
-Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, zs2, lh2 As Integer
+Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, jx, zs2, lh2 As Integer
 
 'Dim att As String
 
@@ -1590,6 +1828,7 @@ j7 = 0
 
 yl = 1
 
+jx = 0
 
 ll = 1
 
@@ -1602,15 +1841,40 @@ zs = 0
      Workbooks(suu & ".xls").Activate
   
   Do
+     
+      zs = zs + 1
+      
+     
+
+       j9 = j9 + 1
+      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Then
+     
+     
+     jx = jx + 1
+     
+     
+
+    
+    
+    End If
+
+
+  Loop Until Application.WorksheetFunction.CountA(Sheets("汇总表").Rows(zs)) = 0
+  
+    
+    
+            j9 = 2
    
-    zs = zs + 1
     
-   Loop Until Application.WorksheetFunction.CountA(Sheets("汇总表").Rows(zs)) = 0
-  '   Loop Until Workbooks(suu & ".xls").Sheets("汇总表").Cells(zs, 1) = "总数量"
+
+    
+    zs2 = zs - 3  '汇总表有效数据行数
+    
+    zs2 = zs2 - jx   '汇总表排除PG后有效数据行数
     
     
     
-    zs2 = zs - 1
+   
     
     j = zs2 \ 27
     
@@ -1645,6 +1909,29 @@ zs = 0
     
     Do
         
+nei5:
+
+        
+       If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Then
+        
+      
+        
+       j9 = j9 + 1
+        
+    GoTo nei5
+    
+  
+        
+       End If
+         
+        
+      
+        
+   
+        
+
+
+        
     j7 = j7 + 1
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
@@ -1658,6 +1945,9 @@ zs = 0
     a2 = a2 + 1
     j9 = j9 + 1
     
+    
+
+    
     Loop Until j7 Mod 27 = 0
     
      a2 = a2 + 13  '相邻索引表数据间隔
@@ -1670,19 +1960,22 @@ zs = 0
 
     Loop Until i = j + 1
     
- '  ActiveSheet.Rows(a2 - 37) = ""   '总数量文字删除
+  '总数量文字删除
  For kh = 1 To a2 Step 1
  
   If ActiveSheet.Cells(kh, 3) = "总数量" Then
   
-  ActiveSheet.Rows(kh) = ""
+ ActiveSheet.Rows(kh) = ""
   
  End If
 
-        Rows(ll & ":" & ll + 40).Select
-        Selection.Delete
-        Rows(1).Select
+
 Next
+
+
+       Rows(ll & ":" & ll + 40).Select
+      Selection.Delete
+      Rows(1).Select
 endd:
 Application.ScreenUpdating = True
 End Sub
