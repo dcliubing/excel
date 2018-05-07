@@ -1964,7 +1964,17 @@ nei5:
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
     Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
     
-      '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
+          If Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value Like "TE*" Or Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value Like "PT*" Or Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value Like "LT*" Or Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value Like "FT*" Then
+      
+        Workbooks(indel & ".xls").Sheets(1).Cells(a2, 46).Value = "4~20mA DC"
+        
+        
+        ElseIf Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value Like "*V*" Then
+        
+        
+           Workbooks(indel & ".xls").Sheets(1).Cells(a2, 49).Value = "4~20mA DC"
+        
+        End If
      
       
  
