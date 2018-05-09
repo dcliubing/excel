@@ -1767,9 +1767,9 @@ nei5:
         
         
     j7 = j7 + 1
-    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
-    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 6).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
-    Workbooks(indel & ".xls").Sheets(1).Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
+    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
+    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 6).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
+    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
      
