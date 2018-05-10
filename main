@@ -1800,10 +1800,13 @@ nei5:
   
  End If
 
-        Rows(ll & ":" & ll + 40).Select
+       
+Next
+ Rows(ll & ":" & ll + 40).Select
         Selection.Delete
         Rows(1).Select
-Next
+ 
+ActiveSheet.PageSetup.PrintArea = Range(Cells(1, 1), Cells(ll - 1, 68))
 endd:
 Application.ScreenUpdating = True
 End Sub
