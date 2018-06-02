@@ -42,7 +42,7 @@ ActiveWorkbook.SaveAs iFile, True
     
     
  Call 调节阀列表
-     ElseIf sh.Cells(4, 4).Value = "气动切断阀" Then
+     ElseIf sh.Cells(4, 9).Value = "气动切断阀" Then
     
     
  Call 开关阀列表
