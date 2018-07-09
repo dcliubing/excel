@@ -42,7 +42,7 @@ ActiveWorkbook.SaveAs iFile, True
     
     
  Call 调节阀列表
-     ElseIf sh.Cells(4, 9).Value = "气动切断阀" Then
+     ElseIf sh.Cells(4, 4).Value = "气动切断阀" Then
     
     
  Call 开关阀列表
@@ -56,7 +56,11 @@ ActiveWorkbook.SaveAs iFile, True
     
     
  Call 双金属温度计列表
-  
+   
+       ElseIf sh.Cells(4, 9).Value Like "*转子*" Then
+    
+    
+ Call 转子列表
     
           ElseIf sh.Cells(4, 9).Value Like "*压力表*" Then
     
@@ -72,7 +76,7 @@ Next
 '工作表排序
 i% = Sheets.Count
 On Error Resume Next
-For Each tmp In Array("双金属温度计", "压力表", "热电阻", "压变", "电磁", "差压液位", "调节阀", "开关阀") '工作表名
+For Each tmp In Array("双金属温度计", "压力表", "热电阻", "压变", "金属转子", "电磁", "差压液位", "调节阀", "开关阀") '工作表名
     t = Sheets(tmp).[a1]
     
     If Err = Empty Then Sheets(tmp).Move after:=Sheets(i) Else Err.Clear
@@ -84,6 +88,136 @@ MsgBox "新建工作薄," & vbCrLf & "完整路径及名称:" & vbCrLf & iFile
 endd:
 End Sub
 
+Sub 转子列表()
+
+Application.ScreenUpdating = False
+
+      Dim NewName6 As String
+      
+      NewName6 = "金属转子"
+      
+      Workbooks(newname2 & ".xls").Sheets.Add.Name = NewName6
+
+
+
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
+
+
+Dim arr() As Variant
+
+
+n9 = 9
+yl = 10 '数据源列
+fl = 1  '新表列
+j9 = n9  '数据源行
+i = 1   '数据源非空行
+ll = 0  '单个数据表页中包含几列仪表
+a2 = 2  '新表行
+dh = 0 '被删除行数
+
+nei:
+
+
+
+
+If n9 > 9 And n9 < 14 Then
+
+ElseIf n9 > 14 And n9 < 21 Then
+GoTo jixu
+
+ElseIf n9 > 25 And n9 < 39 Then
+GoTo jixu
+
+
+ElseIf n9 = 43 Then
+GoTo ee
+
+Else: GoTo jia
+End If
+
+jixu:
+
+Do
+
+  
+    
+Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
+    
+    ll = ll + 1
+    yl = yl + 6
+  
+    a2 = a2 + 1
+   If ll Mod 3 = 0 Then
+   j9 = j9 + 50
+  i = i + 50
+   yl = 10
+
+   End If
+   
+    
+
+ 
+Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
+j9 = n9
+kh = a2
+ i = 1
+ fl2 = fl + 1
+ fl = fl + 1
+
+
+yl = 10
+ll = 0
+a2 = 2
+jia:
+n9 = n9 + 1
+
+GoTo nei
+
+
+
+
+ee:
+
+ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
+ '空行
+ For kh2 = kh To 2 Step -1
+ If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+ dh = dh + 1
+ Rows(kh2).Delete
+ End If
+ Next kh2
+ 
+ lh = kh - dh   '新表最终行数
+ lh2 = lh + 1
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "公称通径", "精度", "测量管材质", "浮子材质", "衬里材质", "工艺连接形式", "输出信号", "电源", "法兰标准", "法兰尺寸", "螺纹规格", "仪表类型")
+
+Range(Cells(2, fl), Cells(lh, fl)) = "金属转子流量计"
+
+ 
+ Range(Cells(1, 1), Cells(1, fl2)) = arr
+ 
+ Range(Cells(1, 1), Cells(lh, fl2)).Select
+ 
+ Call 格式整理
+ 
+ '自动列宽
+        Selection.Columns.AutoFit
+        
+
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
+        
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
+        
+        ' 加粗冻结 宏
+        
+ Range(Cells(1, 1), Cells(1, fl2)).Select
+
+Call 首行格式
+
+        
+                Workbooks(newname & ".xls").Activate '返回数据表文件
+endd:
+End Sub
 Sub 电磁列表()
 
 Application.ScreenUpdating = False
