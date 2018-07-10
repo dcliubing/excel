@@ -1991,7 +1991,7 @@ zs = 0
     zs = zs + 1
     
          
-      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Then
+      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "FG*" Then
      
      
      jx = jx + 1
@@ -2052,7 +2052,7 @@ zs = 0
     
 nei5:
         
-    If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Then
+    If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "FG*" Then
         
       
         
@@ -2200,7 +2200,7 @@ zs = 0
     zs = zs + 1
     
          
-      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Then
+      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "FG*" Then
      
      
      jx = jx + 1
@@ -2264,7 +2264,7 @@ zs = 0
 nei5:
 
         
-     If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Then
+     If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "FG*" Then
         
       
         
