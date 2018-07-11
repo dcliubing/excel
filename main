@@ -2127,7 +2127,7 @@ zs = 0
     zs = zs + 1
     
          
-      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "FG*" Then
+      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*FG*" Then
      
      
      jx = jx + 1
@@ -2188,7 +2188,7 @@ zs = 0
     
 nei5:
         
-    If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "FG*" Then
+    If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*FG*" Then
         
       
         
@@ -2214,7 +2214,7 @@ nei5:
       
       
       
-      If Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "PT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "LT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "FT*" Then
+      If Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*PT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*LT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*FT*" Then
       
         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 12).Value = "4~20mA DC"
         
@@ -2226,7 +2226,7 @@ nei5:
            
            
            
-           ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "TE*" Then
+           ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*TE*" Then
            
          Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 12).Value = "RTD"
          
@@ -2336,7 +2336,7 @@ zs = 0
     zs = zs + 1
     
          
-      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "FG*" Then
+      If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*FG*" Then
      
      
      jx = jx + 1
@@ -2400,7 +2400,7 @@ zs = 0
 nei5:
 
         
-     If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "FG*" Then
+     If Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*PG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*TG*" Or Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text Like "*FG*" Then
         
       
         
@@ -2425,7 +2425,7 @@ nei5:
     Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
     Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
     
-          If Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "PT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "LT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "FT*" Then
+          If Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*PT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*LT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*FT*" Then
       
         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 46).Value = "4~20mA DC"
         
@@ -2437,7 +2437,7 @@ nei5:
            
            
                       
-           ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "TE*" Then
+           ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*TE*" Then
            
          Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 46).Value = "RTD"
         
