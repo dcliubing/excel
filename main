@@ -1613,7 +1613,17 @@ Application.ScreenUpdating = False
    x = "调节阀"
    y = "开关阀"
    
-   Sheets(2).Select
+   Sheets(1).Select
+   
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" Then
+    
+    MsgBox "确认是否为数据表表格"
+    
+    GoTo endd
+    
+    End If
+   
+   
     fl = 22
 
 nei:
@@ -1670,6 +1680,8 @@ nei2:
          End If
          
          Application.ScreenUpdating = True
+         
+endd:
  
 End Sub
 
