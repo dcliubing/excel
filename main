@@ -1953,6 +1953,14 @@ Sheets(1).Activate
 
 Application.ScreenUpdating = False
 
+    If Not ActiveSheet.Cells(37, 45).Text Like "*索引*" Then
+    
+    MsgBox "确认是否为仪表索引表格"
+    
+    GoTo endd
+    
+    End If
+
       suu = InputBox("请输入汇总表工作簿的名称：")
       On Error GoTo endd
 
@@ -2095,6 +2103,14 @@ End Sub
   Sub IO表生成()
     
     Dim suu, indel As String
+
+    If Not ActiveSheet.Cells(4, 11).Text Like "*I/O*" Then
+    
+    MsgBox "确认是否为仪表IO表格"
+    
+    GoTo endd
+    
+    End If
 
 Application.ScreenUpdating = False
 
@@ -2305,6 +2321,15 @@ End Sub
     Dim suu, indel As String
 
 Application.ScreenUpdating = False
+
+
+    If Not ActiveSheet.Cells(37, 45).Text Like "*监控数据*" Then
+    
+    MsgBox "确认是否为仪表监控表格"
+    
+    GoTo endd
+    
+    End If
 
       suu = InputBox("请输入汇总表工作簿的名称：")
       On Error GoTo endd
