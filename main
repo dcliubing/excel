@@ -1612,16 +1612,23 @@ Sub 序号生成()
 '
 ' 序号 宏
 
-   Sheets(2).Select
+
+
+   Sheets(1).Select
    
     If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" Then
     
-    MsgBox "确认是否为数据表表格"
+    MsgBox "确认是否为数据表表格,并删除首页"
     
     GoTo endd
     
+    
+    
     End If
-'
+
+
+
+
 Application.ScreenUpdating = False
    Dim i, j, k, a2, fl As Integer
    Dim x, y As String
@@ -1630,16 +1637,7 @@ Application.ScreenUpdating = False
    x = "调节阀"
    y = "开关阀"
    
-    If Sheets(1).Cells(1, 9).Text <> "仪表数据表" Then
-    
-      Sheets(2).Select
-      
-      Else
-      
-            Sheets(1).Select
-      
-    
-    End If
+
 
    
     fl = 22
