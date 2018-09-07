@@ -45,16 +45,16 @@ ActiveWorkbook.SaveAs iFile, True
     
  Call 差压液位列表
     
-    ElseIf sh.Cells(4, 4).Value Like "调节阀" Then
+    ElseIf sh.Cells(4, 4).Value Like "*调节阀*" Then
     
     
  Call 调节阀列表
-     ElseIf sh.Cells(4, 4).Value = "气动切断阀" Then
+     ElseIf sh.Cells(4, 4).Value Like "*切断阀*" Or sh.Cells(4, 4).Value Like "*开关阀*" Or sh.Cells(4, 9).Value Like "*开关阀*" Or sh.Cells(4, 9).Value Like "*切断阀*" Then
     
     
  Call 开关阀列表
  
-      ElseIf sh.Cells(4, 9).Value Like "热电阻" Then
+      ElseIf sh.Cells(4, 9).Value Like "*热电阻*" Then
     
     
  Call 热电阻列表
@@ -2265,11 +2265,15 @@ nei5:
         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 12).Value = "4~20mA DC"
         
         
-        ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value Like "调节阀" Then
+        ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value Like "*调节阀*" Then
         
         
            Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 23).Value = "4~20mA DC"
            
+                   ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value Like "*开关阀*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value Like "*切断阀*" Then
+        
+        
+           Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 23).Value = "DO"
            
            
            ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*TE*" Then
@@ -2559,4 +2563,5 @@ Next
 endd:
 Application.ScreenUpdating = True
 End Sub
+
 
