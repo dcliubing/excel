@@ -1618,7 +1618,7 @@ Sub 序号生成()
    
     If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" Then
     
-    MsgBox "确认是否为数据表表格,首页"
+    MsgBox "确认是否为首页"
     
  '   GoTo endd
     
@@ -1631,6 +1631,27 @@ Sub 序号生成()
     
     End If
 
+
+    If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+    
+    
+    GoTo nee
+    
+    
+    
+    Else
+    
+    
+     
+        MsgBox "确认是否为数据表表格"
+    
+    
+    GoTo endd
+
+    
+    End If
+
+nee:
 
 
 Application.ScreenUpdating = False
