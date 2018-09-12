@@ -1618,14 +1618,18 @@ Sub 序号生成()
    
     If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" Then
     
-    MsgBox "确认是否为数据表表格,并删除首页"
+    MsgBox "确认是否为数据表表格,首页"
     
-    GoTo endd
+ '   GoTo endd
     
     
+   Sheets(2).Select
+   
+   Else
+   
+     Sheets(1).Select
     
     End If
-
 
 
 
@@ -1655,10 +1659,16 @@ End If
    Do
      i = i + 1
      ActiveSheet.Cells(a2, fl).Value = i
+     
+  
+    
+  
+     
+     
      a2 = a2 + 50
    
   
-    
+
           
      
      Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
@@ -1695,7 +1705,15 @@ nei2:
          End If
          End If
          
+             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" Then
+             
+             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
+             
+             End If
+         
+         
          Application.ScreenUpdating = True
+         
          
 endd:
  
