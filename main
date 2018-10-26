@@ -2381,7 +2381,7 @@ Next
   ActiveSheet.PageSetup.PrintArea = Range(Cells(1, 1), Cells(ll - 1, 34))
   
   
-  
+    ActiveWindow.View = xlPageBreakPreview
   
 Do
      
@@ -2629,7 +2629,7 @@ Next
       Selection.Delete
       Rows(1).Select
       
-      
+       ActiveWindow.View = xlPageBreakPreview
       Do
      
   
