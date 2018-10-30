@@ -2394,7 +2394,7 @@ Do
   
 Loop While fy > 0
    
-        
+    ActiveSheet.PageSetup.PrintArea = "$A$1:$AH$" & ll - 1   '设置打印区域        
         
 endd:
 Application.ScreenUpdating = True
