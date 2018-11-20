@@ -12,7 +12,7 @@ Application.ScreenUpdating = False
     End If
     
     newname = ActiveWorkbook.Name
-    MsgBox newname
+    ' MsgBox newname
       newname2 = InputBox("请输入汇总表工作簿的名称：")
       On Error GoTo endd
 Dim iFile As String
