@@ -12,7 +12,7 @@ Application.ScreenUpdating = False
     End If
     
     newname = ActiveWorkbook.Name
-    ' MsgBox newname
+  '  MsgBox newname
       newname2 = InputBox("请输入汇总表工作簿的名称：")
       On Error GoTo endd
 Dim iFile As String
@@ -1256,7 +1256,7 @@ endd:
 End Sub
 
 Sub 双金属温度计列表()
-MsgBox newname
+'MsgBox newname
 
 
 Application.ScreenUpdating = False
@@ -2231,7 +2231,7 @@ Application.ScreenUpdating = False
 
       indel = ActiveWorkbook.Name
       
-      MsgBox indel
+      'MsgBox indel
     '  indel = InputBox("请输入IO表工作簿的名称：")
       On Error GoTo endd
 
@@ -2439,7 +2439,7 @@ Do
   
       Set ActiveSheet.HPageBreaks(fy).Location = Rows((fy * 40) + 1)
       
-      MsgBox fy
+     ' MsgBox fy
       
       fy = fy - 1
   
