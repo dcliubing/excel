@@ -2195,11 +2195,12 @@ Next
 Do
 
      
-       
+        Rows((fy * 40) + 1).Select
+    ActiveWindow.SelectedSheets.HPageBreaks.Add Before:=ActiveCell
           
             
-              MsgBox fy
-   Set ActiveSheet.HPageBreaks(fy).Location = Rows((fy * 40) + 1)
+
+'   Set ActiveSheet.HPageBreaks(fy).Location = Rows((fy * 40) + 1)
       
 
    fy = fy - 1
