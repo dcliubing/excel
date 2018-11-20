@@ -3,28 +3,36 @@ Sub 工作簿生成()
 
 Application.ScreenUpdating = False
 
-    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" Then
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
     
     MsgBox "确认是否为数据表表格"
     
     GoTo endd
     
     End If
+    
+    newname = ActiveWorkbook.Name
+    MsgBox newname
       newname2 = InputBox("请输入汇总表工作簿的名称：")
       On Error GoTo endd
 Dim iFile As String
 iFile = ThisWorkbook.Path & "\" & newname2 & ".xls"
+
+
 Workbooks.Add
 ActiveWorkbook.SaveAs iFile, True
 
         
-        newname = InputBox("请输入数据表工作簿的名称：")
+      '  newname = InputBox("请输入当前数据表工作簿的名称：")
+        
+  '      MsgBox newname
         On Error GoTo endd
  
         
-       
+
         
-     Workbooks(newname & ".xls").Activate
+ Workbooks(newname).Activate
+
 
      For Each sh In Worksheets    '数组
      
@@ -75,7 +83,7 @@ ActiveWorkbook.SaveAs iFile, True
     
  Call 平衡流量计列表
     
-          ElseIf sh.Cells(4, 9).Value Like "*压力表*" Then
+        ElseIf sh.Cells(4, 9).Value Like "*压力表*" Then
     
     
  Call 压力表列表
@@ -211,6 +219,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "金属转子流量计"
  
  Range(Cells(1, 1), Cells(lh, fl2)).Select
  
+ 
  Call 格式整理
  
  '自动列宽
@@ -228,7 +237,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "金属转子流量计"
 Call 首行格式
 
         
-                Workbooks(newname & ".xls").Activate '返回数据表文件
+                Workbooks(newname).Activate '返回数据表文件
 endd:
 End Sub
 Sub 平衡流量计列表()
@@ -349,7 +358,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "平衡流量计"
 
        Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
         
-       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
+       Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 3).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 3), Cells(lh, 3)))
         
         ' 加粗冻结 宏
         
@@ -358,7 +367,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "平衡流量计"
 Call 首行格式
 
         
-                Workbooks(newname & ".xls").Activate '返回数据表文件
+                Workbooks(newname).Activate '返回数据表文件
 endd:
 End Sub
 Sub 电磁列表()
@@ -498,7 +507,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "电磁流量计"
 Call 首行格式
 
         
-                Workbooks(newname & ".xls").Activate '返回数据表文件
+                Workbooks(newname).Activate '返回数据表文件
 endd:
 End Sub
 
@@ -643,7 +652,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "差压液位变送器"
 '
 Call 首行格式
         
-                Workbooks(newname & ".xls").Activate '返回数据表文件
+                Workbooks(newname).Activate '返回数据表文件
 endd:
 End Sub
 Sub 压变列表()
@@ -785,7 +794,7 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
 
 Call 首行格式
         
-        Workbooks(newname & ".xls").Activate
+        Workbooks(newname).Activate
 endd:
 End Sub
 Sub 调节阀列表()
@@ -919,7 +928,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "调节阀"
 '
 Call 首行格式
         
-        Workbooks(newname & ".xls").Activate
+        Workbooks(newname).Activate
 endd:
 End Sub
 
@@ -1055,7 +1064,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "气动切断阀"
 '
 Call 首行格式
         
-        Workbooks(newname & ".xls").Activate
+        Workbooks(newname).Activate
 endd:
 End Sub
 Sub 压力表列表()
@@ -1241,13 +1250,13 @@ Range(Cells(1, 1), Cells(1, 15)) = arr
  Call 首行格式
 
         
- Workbooks(newname & ".xls").Activate '返回数据表文件
+  Workbooks(newname).Activate   'fan hui shu ju biao
         
 endd:
 End Sub
 
 Sub 双金属温度计列表()
-
+MsgBox newname
 
 
 Application.ScreenUpdating = False
@@ -1421,7 +1430,7 @@ Range(Cells(1, 1), Cells(1, 13)) = arr
  Call 首行格式
 
         
- Workbooks(newname & ".xls").Activate '返回数据表文件
+  Workbooks(newname).Activate   'fan hui shu ju biao
         
 endd:
 End Sub
@@ -1603,7 +1612,7 @@ Range(Cells(1, 1), Cells(1, 14)) = arr
  Call 首行格式
 
         
- Workbooks(newname & ".xls").Activate '返回数据表文件
+  Workbooks(newname).Activate   'fan hui shu ju biao
         
 endd:
 End Sub
@@ -1612,11 +1621,11 @@ Sub 序号生成()
 '
 ' 序号 宏
 
-
+        ActiveWindow.View = xlPageBreakPreview
 
    Sheets(1).Select
    
-    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" Then
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
     
     MsgBox "确认是否为首页"
     
@@ -1624,7 +1633,7 @@ Sub 序号生成()
     
     If ActiveWorkbook.Sheets.Count < 2 Then
     
-    MsgBox ActiveWorkbook.Sheets.Count
+ '   MsgBox ActiveWorkbook.Sheets.Count
     
     GoTo endd
     
@@ -1662,7 +1671,7 @@ nee:
 
 
 Application.ScreenUpdating = False
-   Dim i, j, k, a2, fl As Integer
+   Dim i, j, k, a2, fl, fy As Integer
    Dim x, y As String
    i = 1
    a2 = 7
@@ -1688,25 +1697,43 @@ End If
      i = i + 1
      ActiveSheet.Cells(a2, fl).Value = i
      
+
+    fy = 1
+     
+     
+ 
+
+     
   
-    
-  
+'      Set ActiveSheet.HPageBreaks(fy).Location = Rows(a2 + 44)
+      
+      
+
+
+   
      
      
      a2 = a2 + 50
    
-  
+     fy = fy + 1
 
           
      
      Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
       a2 = 7
       
-     
+     fy = 1
  
      
      If ActiveSheet.Index <> Worksheets.Count Then
          ActiveSheet.Next.Activate
+         
+         
+  
+         
+         
+         
+         
           GoTo nei
        
          Else
@@ -1733,7 +1760,7 @@ nei2:
          End If
          End If
          
-             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" Then
+             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
              
              ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
              
@@ -2028,7 +2055,7 @@ Application.ScreenUpdating = False
       suu = InputBox("请输入汇总表工作簿的名称：")
       On Error GoTo endd
 
-      indel = InputBox("请输入索引表工作簿的名称：")
+      indel = ActiveWorkbook.Name
       On Error GoTo endd
 
 Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, zs2, lh2 As Integer
@@ -2074,9 +2101,12 @@ zs = 0
     
     j = zs2 \ 28
     
+         fy = j
+    
     If zs2 Mod 28 = 0 Then
     
     j = j - 1  '需要复制次数
+    
     
     
     End If
@@ -2086,7 +2116,7 @@ zs = 0
     
    ' GoTo endd
    
-        Workbooks(indel & ".xls").Activate
+        Workbooks(indel).Activate
   Do
 
     i = i + 1
@@ -2121,9 +2151,9 @@ nei5:
         
         
     j7 = j7 + 1
-    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
-    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 6).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
-    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl + 6).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
      
@@ -2159,8 +2189,25 @@ Next
  Rows(ll & ":" & ll + 40).Select
         Selection.Delete
         Rows(1).Select
- 
-ActiveSheet.PageSetup.PrintArea = Range(Cells(1, 1), Cells(ll - 1, 68))
+
+         
+
+Do
+
+     
+       
+          
+            
+              MsgBox fy
+   Set ActiveSheet.HPageBreaks(fy).Location = Rows((fy * 40) + 1)
+      
+
+   fy = fy - 1
+  
+  
+Loop While fy > 0
+        
+'ActiveSheet.PageSetup.PrintArea = Range(Cells(1, 1), Cells(ll - 1, 68))
 endd:
 Application.ScreenUpdating = True
 End Sub
@@ -2181,7 +2228,10 @@ Application.ScreenUpdating = False
       suu = InputBox("请输入汇总表工作簿的名称：")
       On Error GoTo endd
 
-      indel = InputBox("请输入IO表工作簿的名称：")
+      indel = ActiveWorkbook.Name
+      
+      MsgBox indel
+    '  indel = InputBox("请输入IO表工作簿的名称：")
       On Error GoTo endd
 
 Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, jx, zs, zs2, lh2, fy As Integer
@@ -2260,7 +2310,7 @@ zs = 0
     
    ' GoTo endd
    
-        Workbooks(indel & ".xls").Activate
+        Workbooks(indel).Activate
   Do
 
     i = i + 1
@@ -2303,33 +2353,33 @@ nei5:
         
         
     j7 = j7 + 1
-    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
-    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
-   ' Workbooks(indel & ".xls").activesheet.Cells(a2, fl + 10).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
+   ' Workbooks(indel).activesheet.Cells(a2, fl + 10).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
       
       
       
-      If Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*PT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*LT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*FT*" Then
+      If Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*PT*" Or Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*LT*" Or Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*FT*" Then
       
-        Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 12).Value = "4~20mA DC"
+        Workbooks(indel).ActiveSheet.Cells(a2, 12).Value = "4~20mA DC"
         
         
-        ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value Like "*调节阀*" Then
+        ElseIf Workbooks(indel).ActiveSheet.Cells(a2, fl + 5).Value Like "*调节阀*" Then
         
         
-           Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 23).Value = "4~20mA DC"
+           Workbooks(indel).ActiveSheet.Cells(a2, 23).Value = "4~20mA DC"
            
-                   ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value Like "*开关阀*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value Like "*切断阀*" Then
+                   ElseIf Workbooks(indel).ActiveSheet.Cells(a2, fl + 5).Value Like "*开关阀*" Or Workbooks(indel).ActiveSheet.Cells(a2, fl + 5).Value Like "*切断阀*" Then
         
         
-           Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 23).Value = "DO"
+           Workbooks(indel).ActiveSheet.Cells(a2, 23).Value = "DO"
            
            
-           ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*TE*" Then
+           ElseIf Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*TE*" Then
            
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 12).Value = "RTD"
+         Workbooks(indel).ActiveSheet.Cells(a2, 12).Value = "RTD"
          
          
         End If
@@ -2370,7 +2420,7 @@ nei5:
 Next
 
 
-        Rows(ll & ":" & ll + 40).Select
+        Rows(ll & ":" & ll + 41).Select
         Selection.Delete
         Rows(1).Select
         
@@ -2384,17 +2434,18 @@ Next
     ActiveWindow.View = xlPageBreakPreview
   
 Do
-     
+   '  MsgBox fy
   
       Set ActiveSheet.HPageBreaks(fy).Location = Rows((fy * 40) + 1)
       
+      MsgBox fy
       
       fy = fy - 1
   
   
 Loop While fy > 0
    
-    ActiveSheet.PageSetup.PrintArea = "$A$1:$AH$" & ll - 1   '设置打印区域        
+    ActiveSheet.PageSetup.PrintArea = "$A$1:$AH$" & ll - 1   '设置打印区域
         
 endd:
 Application.ScreenUpdating = True
@@ -2422,7 +2473,7 @@ Application.ScreenUpdating = False
       suu = InputBox("请输入汇总表工作簿的名称：")
       On Error GoTo endd
 
-      indel = InputBox("请输入监控表工作簿的名称：")
+      indel = ActiveWorkbook.Name
       On Error GoTo endd
 
 Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, jx, zs2, lh2, fy As Integer
@@ -2505,7 +2556,7 @@ zs = 0
     
    ' GoTo endd
    
-        Workbooks(indel & ".xls").Activate
+        Workbooks(indel).Activate
   Do
 
     i = i + 1
@@ -2548,45 +2599,45 @@ nei5:
 
         
     j7 = j7 + 1
-    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
-    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
-    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl + 11).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
     
-          If Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*PT*" Or Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*LT*" Then
+          If Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*PT*" Or Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*LT*" Then
       
-        Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 46).Value = "4~20mA DC"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 52).Value = "√"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 54).Value = "√"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 59).Value = "√"
-          Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 61).Value = "√"
+        Workbooks(indel).ActiveSheet.Cells(a2, 46).Value = "4~20mA DC"
+         Workbooks(indel).ActiveSheet.Cells(a2, 52).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 54).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 59).Value = "√"
+          Workbooks(indel).ActiveSheet.Cells(a2, 61).Value = "√"
          
          
-         ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*FT*" Then
+         ElseIf Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*FT*" Then
          
-                 Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 46).Value = "4~20mA DC"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 52).Value = "√"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 54).Value = "√"
-          Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 56).Value = "√"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 59).Value = "√"
-          Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 61).Value = "√"
+                 Workbooks(indel).ActiveSheet.Cells(a2, 46).Value = "4~20mA DC"
+         Workbooks(indel).ActiveSheet.Cells(a2, 52).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 54).Value = "√"
+          Workbooks(indel).ActiveSheet.Cells(a2, 56).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 59).Value = "√"
+          Workbooks(indel).ActiveSheet.Cells(a2, 61).Value = "√"
          
-        ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*V*" Then
+        ElseIf Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*V*" Then
         
         
-           Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 49).Value = "4~20mA DC"
-                    Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 52).Value = "√"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 54).Value = "√"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 59).Value = "√"
-          Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 61).Value = "√"
+           Workbooks(indel).ActiveSheet.Cells(a2, 49).Value = "4~20mA DC"
+                    Workbooks(indel).ActiveSheet.Cells(a2, 52).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 54).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 59).Value = "√"
+          Workbooks(indel).ActiveSheet.Cells(a2, 61).Value = "√"
            
                       
-           ElseIf Workbooks(indel & ".xls").ActiveSheet.Cells(a2, fl).Value Like "*TE*" Then
+           ElseIf Workbooks(indel).ActiveSheet.Cells(a2, fl).Value Like "*TE*" Then
            
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 46).Value = "RTD"
-                 Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 52).Value = "√"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 54).Value = "√"
-         Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 59).Value = "√"
-          Workbooks(indel & ".xls").ActiveSheet.Cells(a2, 61).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 46).Value = "RTD"
+                 Workbooks(indel).ActiveSheet.Cells(a2, 52).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 54).Value = "√"
+         Workbooks(indel).ActiveSheet.Cells(a2, 59).Value = "√"
+          Workbooks(indel).ActiveSheet.Cells(a2, 61).Value = "√"
         
         
         End If
@@ -2649,4 +2700,27 @@ endd:
 Application.ScreenUpdating = True
 End Sub
 
+Sub 分页预览()
 
+Dim i, j, k, fy As Integer
+
+fy = 1
+
+
+         ActiveWindow.View = xlPageBreakPreview
+  
+Do
+     
+  
+      Set ActiveSheet.HPageBreaks(fy).Location = Rows(fy + 50)
+      
+      
+      fy = fy + 1
+  
+  
+Loop While fy > 5
+    
+         
+         
+         
+End Sub
