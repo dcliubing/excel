@@ -1724,12 +1724,16 @@ End If
       
      fy = 1
  
-     
+pan1:
      If ActiveSheet.Index <> Worksheets.Count Then
          ActiveSheet.Next.Activate
          
          
+              If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+            
+            GoTo pan1
   
+           End If
          
          
          
@@ -1754,8 +1758,16 @@ nei2:
               Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
       a2 = 7
       
+pan2:
            If ActiveSheet.Index > 1 Then
          ActiveSheet.Previous.Activate
+         
+                       If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+            
+            GoTo pan2
+  
+           End If
+         
           GoTo nei2
          End If
          End If
@@ -2724,4 +2736,728 @@ Loop While fy > 5
          
          
          
+End Sub
+
+Sub 设计阶段()
+'
+' 序号 宏
+
+    '    ActiveWindow.View = xlPageBreakPreview
+
+   Sheets(1).Select
+   
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+    
+    MsgBox "确认是否为首页"
+    
+ '   GoTo endd
+    
+    If ActiveWorkbook.Sheets.Count < 2 Then
+    
+ '   MsgBox ActiveWorkbook.Sheets.Count
+    
+    GoTo endd
+    
+    End If
+    
+   Sheets(2).Select
+   
+   Else
+   
+     Sheets(1).Select
+    
+    End If
+
+
+    If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+    
+    
+    GoTo nee
+    
+    
+    
+    Else
+    
+    
+     
+        MsgBox "确认是否为数据表表格"
+    
+    
+    GoTo endd
+
+    
+    End If
+
+nee:
+
+
+Application.ScreenUpdating = False
+   Dim i, j, k, a2, fl, fy As Integer
+   Dim x, y, z As String
+   
+   a2 = 7
+   x = "调节阀"
+   y = "开关阀"
+   
+  z = InputBox("请输入设计阶段：")
+  
+  If z = "" Then
+  
+  GoTo endd
+  
+  End If
+
+   i = 0
+
+
+nei:
+
+ If ActiveSheet.Cells(4, 4).Text = x Then
+  
+fl = 10
+ElseIf ActiveSheet.Cells(4, 4).Text = y Then
+fl = 10
+Else: fl = 19
+End If
+   
+   Do
+     
+     ActiveSheet.Cells(a2, fl).Value = z
+     
+    
+    fy = 1
+     
+     
+ i = i + 1
+
+     
+  
+'      Set ActiveSheet.HPageBreaks(fy).Location = Rows(a2 + 44)
+      
+      
+
+
+   
+     
+     
+     a2 = a2 + 50
+   
+     fy = fy + 1
+
+          
+     
+     Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
+      a2 = 7
+      
+     fy = 1
+ 
+nei2:
+     If ActiveSheet.Index <> Worksheets.Count Then
+         ActiveSheet.Next.Activate
+         
+            If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+            
+            GoTo nei2
+  
+           End If
+         
+         
+         
+          GoTo nei
+       
+      
+         End If
+         
+             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+             
+             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
+             
+             End If
+         
+         
+         
+         
+         MsgBox "共写入" & i & "个    " & z
+endd:
+
+
+ Application.ScreenUpdating = True
+End Sub
+
+Sub 项目编号()
+'
+' 序号 宏
+
+    '    ActiveWindow.View = xlPageBreakPreview
+
+   Sheets(1).Select
+   
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+    
+    MsgBox "确认是否为首页"
+    
+ '   GoTo endd
+    
+    If ActiveWorkbook.Sheets.Count < 2 Then
+    
+ '   MsgBox ActiveWorkbook.Sheets.Count
+    
+    GoTo endd
+    
+    End If
+    
+   Sheets(2).Select
+   
+   Else
+   
+     Sheets(1).Select
+    
+    End If
+
+
+    If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+    
+    
+    GoTo nee
+    
+    
+    
+    Else
+    
+    
+     
+        MsgBox "确认是否为数据表表格"
+    
+    
+    GoTo endd
+
+    
+    End If
+
+nee:
+
+
+Application.ScreenUpdating = False
+   Dim i, j, k, a2, fl, fy As Integer
+   Dim x, y, z As String
+   
+   a2 = 7
+   x = "调节阀"
+   y = "开关阀"
+   
+  z = InputBox("请输入项目编号：")
+  If z = "" Then
+  
+  GoTo endd
+  
+  End If
+   i = 0
+
+
+nei:
+
+ If ActiveSheet.Cells(4, 4).Text = x Then
+  
+fl = 5
+ElseIf ActiveSheet.Cells(4, 4).Text = y Then
+fl = 5
+Else: fl = 11
+End If
+   
+   Do
+     
+     ActiveSheet.Cells(a2, fl).Value = z
+     
+    
+    fy = 1
+     
+     
+ i = i + 1
+
+     
+  
+'      Set ActiveSheet.HPageBreaks(fy).Location = Rows(a2 + 44)
+      
+      
+
+
+   
+     
+     
+     a2 = a2 + 50
+   
+     fy = fy + 1
+
+          
+     
+     Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
+      a2 = 7
+      
+     fy = 1
+ 
+nei2:
+     If ActiveSheet.Index <> Worksheets.Count Then
+         ActiveSheet.Next.Activate
+         
+         
+              If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+            
+            GoTo nei2
+  
+           End If
+         
+         
+         
+         
+          GoTo nei
+       
+      
+         End If
+         
+             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+             
+             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
+             
+             End If
+         
+         
+         
+         
+         MsgBox "共写入" & i & "个    " & z
+endd:
+
+
+ Application.ScreenUpdating = True
+End Sub
+
+
+Sub 工程名称()
+'
+' 序号 宏
+
+    '    ActiveWindow.View = xlPageBreakPreview
+
+   Sheets(1).Select
+   
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+    
+    MsgBox "确认是否为首页"
+    
+ '   GoTo endd
+    
+    If ActiveWorkbook.Sheets.Count < 2 Then
+    
+ '   MsgBox ActiveWorkbook.Sheets.Count
+    
+    GoTo endd
+    
+    End If
+    
+   Sheets(2).Select
+   
+   Else
+   
+     Sheets(1).Select
+    
+    End If
+
+
+    If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+    
+    
+    GoTo nee
+    
+    
+    
+    Else
+    
+    
+     
+        MsgBox "确认是否为数据表表格"
+    
+    
+    GoTo endd
+
+    
+    End If
+
+nee:
+
+
+Application.ScreenUpdating = False
+   Dim i, j, k, a2, fl, fy As Integer
+   Dim x, y, z, z2, z3 As String
+   
+   a2 = 1
+   x = "调节阀"
+   y = "开关阀"
+   
+  z = InputBox("请输入工程名称：")
+  
+  If z = "" Then
+  
+  GoTo endd
+  
+  End If
+
+
+  
+
+nei:
+
+ If ActiveSheet.Cells(4, 4).Text = x Then
+  
+fl = 11
+ElseIf ActiveSheet.Cells(4, 4).Text = y Then
+fl = 11
+Else: fl = 20
+End If
+   
+   Do
+     
+ ActiveSheet.Cells(a2, fl).Value = z
+     
+
+    fy = 1
+     
+     
+ i = i + 1
+
+     
+  
+'      Set ActiveSheet.HPageBreaks(fy).Location = Rows(a2 + 44)
+      
+      
+
+
+   
+     
+     
+     a2 = a2 + 50
+   
+     fy = fy + 1
+
+          
+     
+     Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
+      a2 = 1
+      
+     fy = 1
+ 
+     
+     If ActiveSheet.Index <> Worksheets.Count Then
+         ActiveSheet.Next.Activate
+         
+         
+  
+         
+         
+         
+         
+          GoTo nei
+       
+      
+         End If
+         
+             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+             
+             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
+             
+             End If
+         
+         
+         
+         
+         MsgBox "共写入" & i & "个    " & z
+endd:
+
+
+ Application.ScreenUpdating = True
+End Sub
+
+Sub 装置工区()
+'
+' 序号 宏
+
+    '    ActiveWindow.View = xlPageBreakPreview
+
+   Sheets(1).Select
+   
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+    
+    MsgBox "确认是否为首页"
+    
+ '   GoTo endd
+    
+    If ActiveWorkbook.Sheets.Count < 2 Then
+    
+ '   MsgBox ActiveWorkbook.Sheets.Count
+    
+    GoTo endd
+    
+    End If
+    
+   Sheets(2).Select
+   
+   Else
+   
+     Sheets(1).Select
+    
+    End If
+
+
+    If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+    
+    
+    GoTo nee
+    
+    
+    
+    Else
+    
+    
+     
+        MsgBox "确认是否为数据表表格"
+    
+    
+    GoTo endd
+
+    
+    End If
+
+nee:
+
+
+Application.ScreenUpdating = False
+   Dim i, j, k, a2, fl, fy As Integer
+   Dim x, y, z, z2, z3 As String
+   
+   a2 = 3
+   x = "调节阀"
+   y = "开关阀"
+   
+  z = InputBox("请输入装置工区：")
+  
+  If z = "" Then
+  
+  GoTo endd
+  
+  End If
+
+
+  
+
+nei:
+
+ If ActiveSheet.Cells(4, 4).Text = x Then
+  
+fl = 11
+ElseIf ActiveSheet.Cells(4, 4).Text = y Then
+fl = 11
+Else: fl = 20
+End If
+   
+   Do
+     
+ ActiveSheet.Cells(a2, fl).Value = z
+     
+
+    fy = 1
+     
+     
+ i = i + 1
+
+     
+  
+'      Set ActiveSheet.HPageBreaks(fy).Location = Rows(a2 + 44)
+      
+      
+
+
+   
+     
+     
+     a2 = a2 + 50
+   
+     fy = fy + 1
+
+          
+     
+     Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
+      a2 = 3
+      
+     fy = 1
+ 
+     
+     If ActiveSheet.Index <> Worksheets.Count Then
+         ActiveSheet.Next.Activate
+         
+         
+  
+         
+         
+         
+         
+          GoTo nei
+       
+      
+         End If
+         
+             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+             
+             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
+             
+             End If
+         
+         
+         
+         
+         MsgBox "共写入" & i & "个    " & z
+endd:
+
+
+ Application.ScreenUpdating = True
+End Sub
+Sub 数据表图号()
+'
+' 序号 宏
+
+    '    ActiveWindow.View = xlPageBreakPreview
+
+   Sheets(1).Select
+   
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+    
+    MsgBox "确认是否为首页"
+    
+ '   GoTo endd
+    
+    If ActiveWorkbook.Sheets.Count < 2 Then
+    
+ '   MsgBox ActiveWorkbook.Sheets.Count
+    
+    GoTo endd
+    
+    End If
+    
+   Sheets(2).Select
+   
+   Else
+   
+     Sheets(1).Select
+    
+    End If
+
+
+    If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+    
+    
+    GoTo nee
+    
+    
+    
+    Else
+    
+    
+     
+        MsgBox "确认是否为数据表表格"
+    
+    
+    GoTo endd
+
+    
+    End If
+
+nee:
+
+
+Application.ScreenUpdating = False
+   Dim i, j, k, a2, fl, fy As Integer
+   Dim x, y, z, z2, z3 As String
+   
+   a2 = 5
+   x = "调节阀"
+   y = "开关阀"
+   
+  z = InputBox("请输入数据表图号：")
+  
+  If z = "" Then
+  
+  GoTo endd
+  
+  End If
+
+
+  
+
+nei:
+
+ If ActiveSheet.Cells(4, 4).Text = x Then
+  
+fl = 11
+ElseIf ActiveSheet.Cells(4, 4).Text = y Then
+fl = 11
+Else: fl = 20
+End If
+   
+   Do
+     
+ ActiveSheet.Cells(a2, fl).Value = z
+     
+
+    fy = 1
+     
+     
+ i = i + 1
+
+     
+  
+'      Set ActiveSheet.HPageBreaks(fy).Location = Rows(a2 + 44)
+      
+      
+
+
+   
+     
+     
+     a2 = a2 + 50
+   
+     fy = fy + 1
+
+          
+     
+     Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(a2)) = 0
+      a2 = 5
+      
+     fy = 1
+ 
+     
+     If ActiveSheet.Index <> Worksheets.Count Then
+         ActiveSheet.Next.Activate
+         
+         
+  
+         
+         
+         
+         
+          GoTo nei
+       
+      
+         End If
+         
+             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+             
+             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
+             
+             End If
+         
+         
+         
+         
+         MsgBox "共写入" & i & "个    " & z
+endd:
+
+
+ Application.ScreenUpdating = True
 End Sub
