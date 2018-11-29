@@ -1897,7 +1897,8 @@ Application.ScreenUpdating = False
     ActiveWindow.FreezePanes = True
 End Sub
 
-Sub 表格汇总()
+
+    Sub 表格汇总()
 
 
 
@@ -1953,10 +1954,13 @@ ElseIf ActiveSheet.Cells(1, kk).Text = "量程" And fl = 6 Then
 
 yl = kk
 
-ElseIf ActiveSheet.Cells(1, kk).Text = "仪表类型" And fl = 7 Then
+ElseIf ActiveSheet.Cells(1, kk).Text = "PID号" And fl = 7 Then
 
 yl = kk
 
+ElseIf ActiveSheet.Cells(1, kk).Text = "仪表类型" And fl = 8 Then
+
+yl = kk
 
 
 
@@ -2015,23 +2019,23 @@ j9 = 2
 
 
 
-If fl < 8 Then
+If fl < 9 Then
 GoTo nei2
 End If
 
 Sheets(1).Activate
 
- arr = Array("位号", "数量", "用途", "温度", "压力", "量程", "仪表类型")
-  Range(Cells(1, 1), Cells(1, 7)) = arr
+ arr = Array("位号", "数量", "用途", "温度", "压力", "量程", "PID号", "仪表类型")
+  Range(Cells(1, 1), Cells(1, 8)) = arr
 
   Sheets(1).Cells(a3, 1).Value = "总数量"
         
         Sheets(1).Cells(a3, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(a3, 2)))
-    Range(Cells(1, 1), Cells(a3 - 1, 7)).Select
+    Range(Cells(1, 1), Cells(a3 - 1, 8)).Select
     
     Call 格式整理
 
-       Range(Cells(1, 1), Cells(a3, 7)).Select
+       Range(Cells(1, 1), Cells(a3, 8)).Select
   
         Selection.Columns.AutoFit
         
@@ -2039,14 +2043,13 @@ Sheets(1).Activate
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, 7)).Select
+ Range(Cells(1, 1), Cells(1, 8)).Select
  
     Call 首行格式
     
 endd:
     
     End Sub
-    
   
 
 
