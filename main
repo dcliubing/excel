@@ -1669,11 +1669,23 @@ Sub 序号生成()
 
 nee:
 
+ms = MsgBox("是否考虑首页", vbOKCancel)
+
+If ms = vbOK Then
+
+i = 1
+
+ElseIf ms = vbCancel Or ms = vbAbort Or ms = vbIgnore Then
+
+i = 0
+
+End If
+
 
 Application.ScreenUpdating = False
-   Dim i, j, k, a2, fl, fy As Integer
+   Dim j, k, a2, fl, fy As Integer
    Dim x, y As String
-   i = 1
+  ' i = 1
    a2 = 7
    x = "调节阀"
    y = "开关阀"
@@ -1897,8 +1909,7 @@ Application.ScreenUpdating = False
     ActiveWindow.FreezePanes = True
 End Sub
 
-
-    Sub 表格汇总()
+Sub 表格汇总()
 
 
 
@@ -2050,6 +2061,7 @@ Sheets(1).Activate
 endd:
     
     End Sub
+    
   
 
 
@@ -2205,7 +2217,7 @@ Next
         Selection.Delete
         Rows(1).Select
 
- ActiveSheet.PageSetup.PrintArea = Range(Cells(1, 1), Cells(ll - 1, 68))        
+     ActiveSheet.PageSetup.PrintArea = Range(Cells(1, 1), Cells(ll - 1, 68))
 
 Do
 
@@ -3464,3 +3476,4 @@ endd:
 
  Application.ScreenUpdating = True
 End Sub
+
