@@ -121,7 +121,7 @@ Application.ScreenUpdating = False
 
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, num7 As Integer
 
 
 Dim arr() As Variant
@@ -135,7 +135,7 @@ i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
 dh = 0 '被删除行数
-
+num7 = 7
 nei:
 
 
@@ -164,6 +164,8 @@ Do
     
 Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
     
+     Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 25).Value = ActiveSheet.Cells(num7, 22).Text
+    
     ll = ll + 1
     yl = yl + 6
   
@@ -172,7 +174,7 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.
    j9 = j9 + 50
   i = i + 50
    yl = 10
-
+num7 = num7 + 50
    End If
    
     
@@ -185,7 +187,7 @@ kh = a2
  fl2 = fl + 1
  fl = fl + 1
 
-
+num7 = 7
 yl = 10
 ll = 0
 a2 = 2
@@ -202,7 +204,7 @@ ee:
  Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+  If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Range(Cells(kh2, 1), Cells(kh2, 5))) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -210,14 +212,14 @@ ee:
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "公称通径", "精度", "测量管材质", "浮子材质", "衬里材质", "工艺连接形式", "输出信号", "电源", "法兰标准", "法兰尺寸", "螺纹规格", "仪表类型")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "公称通径", "精度", "测量管材质", "浮子材质", "衬里材质", "工艺连接形式", "输出信号", "电源", "法兰标准", "法兰尺寸", "螺纹规格", "仪表类型", "数据表页号")
 
 Range(Cells(2, fl), Cells(lh, fl)) = "金属转子流量计"
 
  
- Range(Cells(1, 1), Cells(1, fl2)) = arr
+ Range(Cells(1, 1), Cells(1, fl2 + 1)) = arr
  
- Range(Cells(1, 1), Cells(lh, fl2)).Select
+ Range(Cells(1, 1), Cells(lh, fl2 + 1)).Select
  
  
  Call 格式整理
@@ -232,7 +234,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "金属转子流量计"
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, fl2)).Select
+ Range(Cells(1, 1), Cells(1, fl2 + 1)).Select
 
 Call 首行格式
 
@@ -333,7 +335,7 @@ ee:
  Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+  If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Range(Cells(kh2, 1), Cells(kh2, 5))) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -382,11 +384,12 @@ Application.ScreenUpdating = False
 
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, num7 As Integer
 
 
 Dim arr() As Variant
 
+num7 = 7
 
 n9 = 9
 yl = 10 '数据源列
@@ -434,6 +437,8 @@ Do
   
     
 Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
+
+ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 25).Value = ActiveSheet.Cells(num7, 22).Text
     
     ll = ll + 1
     yl = yl + 6
@@ -443,6 +448,8 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.
    j9 = j9 + 50
   i = i + 50
    yl = 10
+   
+   num7 = num7 + 50
 
    End If
    
@@ -456,7 +463,7 @@ kh = a2
  fl2 = fl + 1
  fl = fl + 1
 
-
+num7 = 7
 yl = 10
 ll = 0
 a2 = 2
@@ -473,7 +480,7 @@ ee:
  Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+  If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Range(Cells(kh2, 1), Cells(kh2, 5))) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -481,14 +488,14 @@ ee:
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "公称通径", "本体材质", "衬里材质", "电极材质", "法兰标准", "法兰尺寸", "接地环材质", "输出信号", "精度", "电源", "安装形式", "仪表类型")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "公称通径", "本体材质", "衬里材质", "电极材质", "法兰标准", "法兰尺寸", "接地环材质", "输出信号", "精度", "电源", "安装形式", "仪表类型", "数据表页号")
 
 Range(Cells(2, fl), Cells(lh, fl)) = "电磁流量计"
 
  
- Range(Cells(1, 1), Cells(1, fl2)) = arr
+ Range(Cells(1, 1), Cells(1, fl2 + 1)) = arr
  
- Range(Cells(1, 1), Cells(lh, fl2)).Select
+ Range(Cells(1, 1), Cells(lh, fl2 + 1)).Select
  
  Call 格式整理
  
@@ -502,7 +509,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "电磁流量计"
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, fl2)).Select
+ Range(Cells(1, 1), Cells(1, fl2 + 1)).Select
 
 Call 首行格式
 
@@ -527,7 +534,7 @@ Application.ScreenUpdating = False
       On Error GoTo endd
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, num7 As Integer
 
 
 
@@ -541,7 +548,7 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
-
+num7 = 7
 
 dh = 0 '被删除行数
 
@@ -575,7 +582,7 @@ Do
 
     
 Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
-    
+     Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 17).Value = ActiveSheet.Cells(num7, 22).Text
     ll = ll + 1
     yl = yl + 6
   
@@ -584,6 +591,8 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.
    j9 = j9 + 50
   i = i + 50
    yl = 10
+
+num7 = num7 + 50
 
    End If
    
@@ -596,7 +605,7 @@ kh = a2
  fl2 = fl + 1
  fl = fl + 1
 
-
+num7 = 7
 yl = 10
 ll = 0
 a2 = 2
@@ -614,7 +623,7 @@ ee:
 Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+  If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Range(Cells(kh2, 1), Cells(kh2, 5))) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -622,14 +631,14 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "设备位号", "介质", "压力", "温度", "量程", "精度", "输出信号", "测量元件材质", "密封膜片材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型")
+ arr = Array("位号", "数量", "用途", "PID号", "设备位号", "介质", "压力", "温度", "量程", "精度", "输出信号", "测量元件材质", "密封膜片材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型", "数据表页号")
 
 Range(Cells(2, fl), Cells(lh, fl)) = "差压液位变送器"
 
- Range(Cells(1, 1), Cells(1, fl2)) = arr
+ Range(Cells(1, 1), Cells(1, fl2 + 1)) = arr
  
  
- Range(Cells(1, 1), Cells(lh, fl2)).Select
+ Range(Cells(1, 1), Cells(lh, fl2 + 1)).Select
  
  
  
@@ -647,7 +656,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "差压液位变送器"
        Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(lh, 2)))
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, fl2)).Select
+ Range(Cells(1, 1), Cells(1, fl2 + 1)).Select
 
 '
 Call 首行格式
@@ -668,7 +677,7 @@ Application.ScreenUpdating = False
 
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, num7 As Integer
 
 
 
@@ -682,7 +691,7 @@ j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
 a2 = 2  '新表行
-
+num7 = 7
 dh = 0 '被删除行数
 
 nei:
@@ -723,6 +732,8 @@ Do
 
     
 Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
+
+ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 16).Value = ActiveSheet.Cells(num7, 22).Text
     
     ll = ll + 1
     yl = yl + 6
@@ -733,6 +744,7 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.
   i = i + 50
    yl = 10
 
+num7 = num7 + 50
    End If
    
     
@@ -742,7 +754,7 @@ kh = a2
  i = 1
  fl2 = fl + 1
  fl = fl + 1
-
+num7 = 7
 
 yl = 10
 ll = 0
@@ -760,7 +772,7 @@ ee:
 Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+  If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Range(Cells(kh2, 1), Cells(kh2, 5))) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -768,13 +780,13 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "量程", "输出信号", "测量元件材质", "密封膜片材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "介质", "压力", "温度", "量程", "输出信号", "测量元件材质", "密封膜片材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型", "数据表页号")
  
  Range(Cells(2, fl), Cells(lh, fl)) = "压力变送器"
 
- Range(Cells(1, 1), Cells(1, fl2)) = arr
+ Range(Cells(1, 1), Cells(1, fl2 + 1)) = arr
  
- Range(Cells(1, 1), Cells(lh, fl2)).Select
+ Range(Cells(1, 1), Cells(lh, fl2 + 1)).Select
   
   
    Call 格式整理
@@ -789,7 +801,7 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, fl2)).Select
+ Range(Cells(1, 1), Cells(1, fl2 + 1)).Select
  '
 
 Call 首行格式
@@ -812,7 +824,7 @@ Application.ScreenUpdating = False
       On Error GoTo endd
 
 
-Dim j9, n9, yl, i, a2, fl, kh, kh2, fl2, dh, lh As Integer
+Dim j9, n9, yl, i, a2, fl, kh, kh2, fl2, dh, lh, num7 As Integer
 
 
 
@@ -824,7 +836,7 @@ yl = 5 '数据源列
 fl = 1  '新表列
 j9 = n9  '数据源行
 i = 1   '数据源非空行
-
+num7 = 7
 a2 = 2  '新表行
 fl = 1  '新表列
 emp = 0
@@ -862,14 +874,14 @@ Do
 
 Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
     
-
+ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 16).Value = ActiveSheet.Cells(num7, 13).Text
   
     a2 = a2 + 1
 
   j9 = j9 + 50
  i = i + 50
 
-  
+  num7 = num7 + 50
  
 Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 
@@ -878,7 +890,7 @@ kh = a2
  i = 1
  fl2 = fl + 1
  fl = fl + 1
-
+num7 = 7
 
 yl = 5
 ll = 0
@@ -894,7 +906,7 @@ ee:
 Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+  If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Range(Cells(kh2, 1), Cells(kh2, 5))) = 0 Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -902,13 +914,13 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "温度", "压力", "阀门形式", "阀座尺寸", "阀体材质", "阀芯材质", "仪表类型")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "温度", "压力", "阀门形式", "阀座尺寸", "阀体材质", "阀芯材质", "仪表类型", "数据表页号")
 
 Range(Cells(2, fl), Cells(lh, fl)) = "调节阀"
 
- Range(Cells(1, 1), Cells(1, fl2)) = arr
+ Range(Cells(1, 1), Cells(1, fl2 + 1)) = arr
  
- Range(Cells(1, 1), Cells(lh, fl2)).Select
+ Range(Cells(1, 1), Cells(lh, fl2 + 1)).Select
    
     Call 格式整理
    
@@ -923,7 +935,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "调节阀"
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, fl2)).Select
+ Range(Cells(1, 1), Cells(1, fl2 + 1)).Select
 
 '
 Call 首行格式
@@ -943,7 +955,7 @@ Application.ScreenUpdating = False
 
 
 
-Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2  As Integer
+Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, num7 As Integer
 
 
 
@@ -952,7 +964,7 @@ Dim arr() As Variant
 
 n9 = 9
 yl = 10 '数据源列
-fl = 1  '新表列
+num7 = 7
 j9 = n9  '数据源行
 i = 1   '数据源非空行
 ll = 0  '单个数据表页中包含几列仪表
@@ -961,6 +973,7 @@ fl = 1  '新表列
 dh = 0 '被删除行数
 
 nei:
+
 
 
 If n9 > 9 And n9 < 16 Then
@@ -990,8 +1003,8 @@ Do
 
     
 Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
-    
-    
+
+ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 18).Value = ActiveSheet.Cells(num7, 22).Text
     ll = ll + 1
     yl = yl + 6
   
@@ -1001,6 +1014,9 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.
   i = i + 50
    yl = 10
 
+
+num7 = num7 + 50
+
    End If
    
     
@@ -1008,12 +1024,15 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.
  
 Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0
 
+
+
 j9 = n9
 kh = a2
  i = 1
  fl2 = fl + 1
  fl = fl + 1
 
+num7 = 7
 
 yl = 10
 ll = 0
@@ -1030,7 +1049,11 @@ ee:
 Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  '空行
  For kh2 = kh To 2 Step -1
- If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Rows(kh2)) = 0 Then
+ 
+  If Application.WorksheetFunction.CountA(Workbooks(newname2 & ".xls").Sheets(NewName6).Range(Cells(kh2, 1), Cells(kh2, 5))) = 0 Then
+  
+'  MsgBox kh2
+'  If Workbooks(newname2 & ".xls").Cells(kh2 - 1, 1) = "" Then
  dh = dh + 1
  Rows(kh2).Delete
  End If
@@ -1038,14 +1061,15 @@ Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
  
  lh = kh - dh   '新表最终行数
  lh2 = lh + 1
- arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "压力", "温度", "阀门形式", "公称通径", "阀体材质", "阀芯材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型")
+ arr = Array("位号", "数量", "用途", "PID号", "管道编号", "管道材质", "管道规格", "介质", "压力", "温度", "阀门形式", "公称通径", "阀体材质", "阀芯材质", "法兰标准及等级", "法兰尺寸及密封面", "仪表类型", "数据表页号")
 
 Range(Cells(2, fl), Cells(lh, fl)) = "气动切断阀"
 
+'Range(Cells(2, fl + 1), Cells(lh, fl + 1)) = sjbyh
 
- Range(Cells(1, 1), Cells(1, fl2)) = arr
+ Range(Cells(1, 1), Cells(1, fl2 + 1)) = arr
  
- Range(Cells(1, 1), Cells(lh, fl2)).Select
+ Range(Cells(1, 1), Cells(lh, fl2 + 1)).Select
     
     Call 格式整理
   
@@ -1059,7 +1083,7 @@ Range(Cells(2, fl), Cells(lh, fl)) = "气动切断阀"
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, fl2)).Select
+ Range(Cells(1, 1), Cells(1, fl2 + 1)).Select
 
 '
 Call 首行格式
@@ -1082,7 +1106,7 @@ Application.ScreenUpdating = False
    
 
 
-Dim j9, n9, yl, i, a2, ll, tt, j10, ss, zz, fl, kh, kh2, fl2, dh, lh, lh2, emp As Integer
+Dim j9, n9, yl, i, a2, ll, tt, j10, ss, zz, fl, kh, kh2, fl2, dh, lh, lh2, num7, emp As Integer
 
 'Dim att As String
 
@@ -1099,7 +1123,7 @@ a2 = 2  '新表行
 fl = 1  '新表列
 emp = 0
 dh = 0 '被删除行数
-
+num7 = 7
 
 j10 = 30
 j14 = 31
@@ -1134,7 +1158,7 @@ End If
          Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 12).Value = ActiveSheet.Cells(j12, 12).Text
          Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 13).Value = ActiveSheet.Cells(j13, 12).Text
     
-
+ Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 16).Value = ActiveSheet.Cells(num7, 22).Text
                
                
    a2 = a2 + 1
@@ -1150,7 +1174,7 @@ tt = tt + 1
 
 
     
-Loop Until tt Mod 14 = 0
+Loop Until tt Mod 15 = 0
 
 
 j15 = j15 + 50
@@ -1171,11 +1195,11 @@ j14 = j14 + 50
  j10 = j10 + 50
    
    
-    j9 = j9 + 36
+    j9 = j9 + 35
     
     i = i + 50
     
-    
+    num7 = num7 + 50
  
 
 If Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0 Then
@@ -1210,6 +1234,8 @@ If Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0 Then
          
          i = 0
          
+         num7 = 7
+         
          a2 = 2
          
          GoTo nei
@@ -1227,13 +1253,13 @@ End If
   
   ActiveSheet.Cells(a2, 1) = "总数量"
   
- arr = Array("位号", "介质", "温度", "压力", "量程", "PID号", "用途", "测量元件形式", "表头直径", "测量元件材质", "螺纹规格", "法兰标准及等级", "法兰尺寸及密封面", "数量", "仪表类型")
+ arr = Array("位号", "介质", "温度", "压力", "量程", "PID号", "用途", "测量元件形式", "表头直径", "测量元件材质", "螺纹规格", "法兰标准及等级", "法兰尺寸及密封面", "数量", "仪表类型", "数据表页号")
 
  Range(Cells(2, 15), Cells(n9 - 1, 15)) = "就地压力表"
 
-Range(Cells(1, 1), Cells(1, 15)) = arr
+Range(Cells(1, 1), Cells(1, 16)) = arr
 
- Range(Cells(1, 1), Cells(a2 - 1, 15)).Select
+ Range(Cells(1, 1), Cells(a2 - 1, 16)).Select
  
  Call 格式整理
  
@@ -1245,7 +1271,7 @@ Range(Cells(1, 1), Cells(1, 15)) = arr
         
     ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, 15)).Select
+ Range(Cells(1, 1), Cells(1, 16)).Select
 
  Call 首行格式
 
@@ -1267,14 +1293,14 @@ Application.ScreenUpdating = False
        Workbooks(newname2 & ".xls").Sheets.Add.Name = NewName6
 
 
-Dim j9, n9, yl, i, a2, ll, tt, j10, ss, zz, fl, kh, kh2, fl2, dh, lh, lh2, emp As Integer
+Dim j9, n9, yl, i, a2, ll, tt, j10, ss, zz, fl, kh, kh2, fl2, dh, lh, lh2, emp, num7, sjbyh As Integer
 
-'Dim att As String
+
 
 Dim arr() As Variant
 
 
-
+num7 = 7
 yl = 1 '数据源列
 tt = 0
 j9 = 12  '数据源行
@@ -1318,17 +1344,14 @@ End If
          Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 10).Value = ActiveSheet.Cells(j12, 13).Text
     
          Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 11).Value = ActiveSheet.Cells(j13, 13).Text
+  
+          Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 14).Value = ActiveSheet.Cells(num7, 22).Text
+     '    MsgBox ActiveSheet.Cells(num7, 22).Text
+         
+    '    sjbyh = ActiveSheet.Cells(num7, 22).Text
     
-     '          Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
-                     
-      '         Sheets(NewName6).Cells(a2, 8).Value = Sheets(kvname).Cells(j10, 12).Text
-      '
-       '        Sheets(NewName6).Cells(a2, 9).Value = Sheets(kvname).Cells(j11, 12).Text
-      
-      '         Sheets(NewName6).Cells(a2, 10).Value = Sheets(kvname).Cells(j12, 12).Text
-                
-      '         Sheets(NewName6).Cells(a2, 11).Value = Sheets(kvname).Cells(j13, 12).Text
-               
+
+   '     MsgBox num7
                
    a2 = a2 + 1
 nei2:
@@ -1343,8 +1366,11 @@ tt = tt + 1
 
 
     
-Loop Until tt Mod 14 = 0
-   
+Loop Until tt Mod 17 = 0
+
+    
+ 
+ '  MsgBox num7
    j13 = j13 + 50
    
    
@@ -1356,13 +1382,17 @@ Loop Until tt Mod 14 = 0
 
 
 
+num7 = num7 + 50
    
    
-    j9 = j9 + 36
+    j9 = j9 + 33
     
     i = i + 50
     
+   ' num7 = (i - 1) * 50 - 43
     
+    
+   ' MsgBox num7
  
 
 If Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0 Then
@@ -1376,7 +1406,7 @@ If Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0 Then
          
          j9 = 12
          
-   
+         
          
          j11 = 38
          
@@ -1390,6 +1420,8 @@ If Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0 Then
          
          i = 0
          
+         num7 = 7
+         
          a2 = 2
          
          GoTo nei
@@ -1398,7 +1430,12 @@ If Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0 Then
          
     Loop Until yl = 26
     
-    Else: GoTo nei
+    
+ 
+    
+    Else:
+   
+    GoTo nei
     
 End If
 
@@ -1407,13 +1444,15 @@ End If
   
   ActiveSheet.Cells(a2, 1) = "总数量"
   
- arr = Array("位号", "介质", "温度", "压力", "量程", "保护管材料", "PID号", "用途", "螺纹规格", "法兰标准及等级", "法兰尺寸及密封面", "数量", "仪表类型")
+ arr = Array("位号", "介质", "温度", "压力", "量程", "保护管材料", "PID号", "用途", "螺纹规格", "法兰标准及等级", "法兰尺寸及密封面", "数量", "仪表类型", "数据表页号")
 
  Range(Cells(2, 13), Cells(n9 - 1, 13)) = "双金属温度计"
+ 
+ 'Range(Cells(2, 14), Cells(n9 - 1, 14)) = sjbyh
 
-Range(Cells(1, 1), Cells(1, 13)) = arr
+Range(Cells(1, 1), Cells(1, 14)) = arr
 
- Range(Cells(1, 1), Cells(a2 - 1, 13)).Select
+ Range(Cells(1, 1), Cells(a2 - 1, 14)).Select
  
  Call 格式整理
  
@@ -1425,7 +1464,7 @@ Range(Cells(1, 1), Cells(1, 13)) = arr
         
     ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, 13)).Select
+ Range(Cells(1, 1), Cells(1, 14)).Select
 
  Call 首行格式
 
@@ -1669,17 +1708,21 @@ Sub 序号生成()
 
 nee:
 
-ms = MsgBox("是否考虑首页", vbOKCancel)
+    i = InputBox("输入开始页码") - 1
 
-If ms = vbOK Then
 
-i = 1
 
-ElseIf ms = vbCancel Or ms = vbAbort Or ms = vbIgnore Then
+'ms = MsgBox("是否考虑首页", vbOKCancel)
 
-i = 0
+'If ms = vbOK Then
 
-End If
+'i = 1
+
+'ElseIf ms = vbCancel Or ms = vbAbort Or ms = vbIgnore Then
+
+'i = 0
+
+'End If
 
 
 Application.ScreenUpdating = False
@@ -1973,7 +2016,9 @@ ElseIf ActiveSheet.Cells(1, kk).Text = "仪表类型" And fl = 8 Then
 
 yl = kk
 
+ElseIf ActiveSheet.Cells(1, kk).Text = "数据表页号" And fl = 9 Then
 
+yl = kk
 
 
 End If
@@ -2030,23 +2075,23 @@ j9 = 2
 
 
 
-If fl < 9 Then
+If fl < 10 Then
 GoTo nei2
 End If
 
 Sheets(1).Activate
 
- arr = Array("位号", "数量", "用途", "温度", "压力", "量程", "PID号", "仪表类型")
-  Range(Cells(1, 1), Cells(1, 8)) = arr
+ arr = Array("位号", "数量", "用途", "温度", "压力", "量程", "PID号", "仪表类型", "数据表页号")
+  Range(Cells(1, 1), Cells(1, 9)) = arr
 
   Sheets(1).Cells(a3, 1).Value = "总数量"
         
         Sheets(1).Cells(a3, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(a3, 2)))
-    Range(Cells(1, 1), Cells(a3 - 1, 8)).Select
+    Range(Cells(1, 1), Cells(a3 - 1, 9)).Select
     
     Call 格式整理
 
-       Range(Cells(1, 1), Cells(a3, 8)).Select
+       Range(Cells(1, 1), Cells(a3, 9)).Select
   
         Selection.Columns.AutoFit
         
@@ -2054,7 +2099,7 @@ Sheets(1).Activate
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, 8)).Select
+ Range(Cells(1, 1), Cells(1, 9)).Select
  
     Call 首行格式
     
