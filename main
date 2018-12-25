@@ -2088,17 +2088,17 @@ End If
 
 Sheets(1).Activate
 
- arr = Array("位号", "数量", "用途", "温度", "压力", "量程", "PID号", "仪表类型", "数据表页号")
-  Range(Cells(1, 1), Cells(1, 9)) = arr
+ arr = Array("位号", "数量", "用途", "温度", "压力", "量程", "PID号", "仪表类型", "数据表页号", "序号")
+  Range(Cells(1, 1), Cells(1, 10)) = arr
 
   Sheets(1).Cells(a3, 1).Value = "总数量"
         
         Sheets(1).Cells(a3, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(a3, 2)))
-    Range(Cells(1, 1), Cells(a3 - 1, 9)).Select
+    Range(Cells(1, 1), Cells(a3 - 1, 10)).Select
     
     Call 格式整理
 
-       Range(Cells(1, 1), Cells(a3, 9)).Select
+       Range(Cells(1, 1), Cells(a3, 10)).Select
   
         Selection.Columns.AutoFit
         
@@ -2106,7 +2106,7 @@ Sheets(1).Activate
         
         ' 加粗冻结 宏
         
- Range(Cells(1, 1), Cells(1, 9)).Select
+ Range(Cells(1, 1), Cells(1, 10)).Select
  
     Call 首行格式
     
@@ -3551,7 +3551,7 @@ Application.ScreenUpdating = False
       indel = ActiveWorkbook.Name
       On Error GoTo endd
 
-Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, zs, zs2, lh2, nn As Integer
+Dim j9, j7, n9, yl, i, a2, ll, fl, kh, kh2, dh, lh, zs, zs2, lh2, fl2, nn As Integer
 
 'Dim att As String
 
@@ -3564,7 +3564,7 @@ dh = 2
 j9 = 2
 
 a2 = 10
-
+fl2 = 1
 fl = 2
 j7 = 0
 
@@ -3648,9 +3648,18 @@ nei5:
 
 
     Workbooks(indel).ActiveSheet.Cells(a2, fl + 6).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 8).Text
+    
+    
+    Workbooks(indel).ActiveSheet.Cells(a2, fl2).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 9).Text
 
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
+     
+     
+   '  MsgBox Workbooks(indel).ActiveSheet.Cells(a2, fl - 1).Value
+     
+     
+  '   Exit Sub
      
       
 
@@ -3668,6 +3677,7 @@ nei5:
     
     fl = fl + 15
     
+    fl2 = fl2 + 13
     
     
     
@@ -3689,6 +3699,7 @@ nei5:
     
     fl = fl - 30
     
+    fl2 = fl2 - 26
     
 
     Loop Until i = j + 1
