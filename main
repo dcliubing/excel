@@ -1671,7 +1671,7 @@ Sub 序号生成()
  
 ' Sheets(1).Active
    
-    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+    If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
     
     MsgBox "确认是否为首页"
     
@@ -1694,7 +1694,7 @@ Sub 序号生成()
     End If
 
 
-    If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+    If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Or ActiveSheet.Cells(1, 8).Text = "仪表数据表" Then
     
     
     GoTo nee
@@ -1734,13 +1734,13 @@ nee:
 
 Application.ScreenUpdating = False
    Dim j, k, a2, fl, fy As Integer
-   Dim x, y As String
+   Dim x, y, syi As String
   ' i = 1
    a2 = 7
    x = "调节阀"
    y = "开关阀"
    
-
+   syi = "索引"
 
    
     fl = 22
@@ -1752,6 +1752,14 @@ nei:
 fl = 13
 ElseIf ActiveSheet.Cells(4, 4).Text = y Then
 fl = 13
+
+ElseIf ActiveSheet.Cells(4, 8).Text = syi Then
+
+
+
+
+fl = 21
+
 Else: fl = 22
 End If
    
@@ -1791,7 +1799,7 @@ pan1:
          ActiveSheet.Next.Activate
          
          
-              If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+              If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             
             GoTo pan1
   
@@ -1812,6 +1820,10 @@ nei2:
                         fl = 15
                               ElseIf ActiveSheet.Cells(4, 4).Text = y Then
                           fl = 15
+                          ElseIf ActiveSheet.Cells(4, 8).Text = syi Then
+
+                        fl = 24
+                          
                           Else: fl = 25
                        End If
          Do
@@ -1824,7 +1836,7 @@ pan2:
            If ActiveSheet.Index > 1 Then
          ActiveSheet.Previous.Activate
          
-                       If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+                       If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             
             GoTo pan2
   
@@ -1834,7 +1846,7 @@ pan2:
          End If
          End If
          
-             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+             If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
              
              ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
              
@@ -2232,7 +2244,7 @@ nei5:
     j7 = j7 + 1
     Workbooks(indel).ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
     Workbooks(indel).ActiveSheet.Cells(a2, fl + 6).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 2).Text
-    Workbooks(indel).ActiveSheet.Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl + 16).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 7).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
      
@@ -2434,7 +2446,7 @@ nei5:
         
     j7 = j7 + 1
     Workbooks(indel).ActiveSheet.Cells(a2, fl).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl).Text
-    Workbooks(indel).ActiveSheet.Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 6).Text
+    Workbooks(indel).ActiveSheet.Cells(a2, fl + 5).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 7).Text
    ' Workbooks(indel).activesheet.Cells(a2, fl + 10).Value = Workbooks(suu & ".xls").Sheets("汇总表").Cells(j9, yl + 5).Text
     
       '   Sheets(1).Cells(a2, fl + 6).Value = Sheets(2).Cells(j9, yl + 2).Text   '待修改
