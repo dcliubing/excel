@@ -76,7 +76,7 @@ Sub 工作簿生成()
 endd:
 End Sub
 
-Sub 转子列表()
+Private Sub 转子列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "金属转子"
@@ -155,7 +155,7 @@ ee:
 endd:
 End Sub
 
-Sub 平衡流量计列表()
+Private Sub 平衡流量计列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "平衡流量计"
@@ -230,7 +230,7 @@ ee:
 endd:
         End Sub
         
-        Sub 电磁列表()
+Private Sub 电磁列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "电磁"
@@ -315,7 +315,7 @@ ee:
 endd:
 End Sub
 
-Sub 差压液位列表()
+Private Sub 差压液位列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "差压液位"
@@ -399,7 +399,7 @@ ee:
 endd:
 End Sub
 
-Sub 压变列表()
+Private Sub 压变列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "压变"
@@ -488,7 +488,7 @@ ee:
 endd:
 End Sub
 
-Sub 调节阀列表()
+Private Sub 调节阀列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "调节阀"
@@ -570,7 +570,7 @@ ee:
 endd:
 End Sub
 
-Sub 开关阀列表()
+Private Sub 开关阀列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "开关阀"
@@ -655,7 +655,7 @@ ee:
 endd:
 End Sub
 
-Sub 压力表列表()
+Private Sub 压力表列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "压力表"
@@ -743,7 +743,7 @@ nei2:
 endd:
 End Sub
 
-Sub 双金属温度计列表()
+Private Sub 双金属温度计列表()
         'MsgBox newname
         Application.ScreenUpdating = False
         Dim NewName6 As String
@@ -824,7 +824,7 @@ nei2:
 endd:
 End Sub
 
-Sub 热电阻列表()
+Private Sub 热电阻列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "热电阻"
@@ -998,7 +998,7 @@ pan2:
 endd:
 End Sub
 
-Sub 格式整理()
+Private Sub 格式整理()
         Application.ScreenUpdating = False
         '格式整理
         Selection.Borders(xlDiagonalDown).LineStyle = xlNone
@@ -1082,7 +1082,7 @@ Sub 格式整理()
         Selection.Columns.AutoFit
 End Sub
 
-Sub 首行格式()
+Private Sub 首行格式()
         Application.ScreenUpdating = False
         With Selection.Interior
         .Pattern = xlSolid
@@ -1866,7 +1866,7 @@ endd:
         Application.ScreenUpdating = True
 End Sub
 
-Sub 温变列表()
+Private Sub 温变列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "温变"
@@ -1949,7 +1949,7 @@ ee:
 endd:
 End Sub
 
-Sub 涡街列表()
+Private Sub 涡街列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "涡街"
@@ -2030,7 +2030,7 @@ ee:
 endd:
 End Sub
 
-Sub 雷达列表()
+Private Sub 雷达列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "雷达"
@@ -2109,7 +2109,7 @@ ee:
 endd:
 End Sub
 
-Sub 音叉列表()
+Private Sub 音叉列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "音叉"
@@ -2189,3 +2189,4 @@ ee:
         Workbooks(newname).Activate '返回数据表文件
 endd:
 End Sub
+
