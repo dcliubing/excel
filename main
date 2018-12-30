@@ -1142,9 +1142,9 @@ nei:
             GoTo nx
         End If
         If ActiveSheet.Name = "调节阀" And fl = 6 Then
-            yl = 27 '空列排除调节阀量程循环错误
+            goto nx '排除音叉量程循环错误
             ElseIf ActiveSheet.Name = "音叉" And fl = 6 Then
-            yl = 27  '空列排除音叉量程循环错误
+            goto nx '排除音叉量程循环错误
         End If
         Do
             Sheets(1).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
