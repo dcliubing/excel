@@ -1142,9 +1142,9 @@ nei:
             GoTo nx
         End If
         If ActiveSheet.Name = "调节阀" And fl = 6 Then
-            goto nx '排除音叉量程循环错误
+            yl = 27 '空列排除调节阀量程循环错误
             ElseIf ActiveSheet.Name = "音叉" And fl = 6 Then
-            goto nx '排除音叉量程循环错误
+            yl = 27  '空列排除音叉量程循环错误
         End If
         Do
             Sheets(1).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
@@ -1467,7 +1467,7 @@ End Sub
 
 Sub 设计阶段()
         Sheets(1).Select
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             MsgBox "确认是否为首页"
             '   GoTo endd
             If ActiveWorkbook.Sheets.Count < 2 Then
@@ -1478,7 +1478,7 @@ Sub 设计阶段()
                 Else
                 Sheets(1).Select
         End If
-        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Or ActiveSheet.Cells(1, 8).Text = "仪表数据表" Then
             GoTo nee
             Else
             MsgBox "确认是否为数据表表格"
@@ -1487,11 +1487,12 @@ Sub 设计阶段()
 nee:
         Application.ScreenUpdating = False
         Dim i, j, k, a2, fl, fy As Integer
-        Dim x, y, z As String
+        Dim x, y, z, syi As String
         a2 = 7
         x = "调节阀"
         y = "开关阀"
         z = InputBox("请输入设计阶段：")
+        syi = "索引"
         If z = "" Then
             GoTo endd
         End If
@@ -1501,6 +1502,9 @@ nei:
             fl = 10
             ElseIf ActiveSheet.Cells(4, 4).Text = y Then
             fl = 10
+            ElseIf ActiveSheet.Cells(4, 8).Text = syi Then
+            fl = 18
+            
             Else: fl = 19
         End If
         Do
@@ -1516,12 +1520,12 @@ nei:
 nei2:
         If ActiveSheet.Index <> Worksheets.Count Then
             ActiveSheet.Next.Activate
-            If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+            If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
                 GoTo nei2
             End If
                 GoTo nei
         End If
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
         End If
         MsgBox "共写入" & i & "个    " & z
@@ -1531,7 +1535,7 @@ End Sub
 
 Sub 项目编号()
         Sheets(1).Select
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             MsgBox "确认是否为首页"
             '   GoTo endd
                 If ActiveWorkbook.Sheets.Count < 2 Then
@@ -1542,7 +1546,7 @@ Sub 项目编号()
             Else
             Sheets(1).Select
         End If
-        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Or ActiveSheet.Cells(1, 8).Text = "仪表数据表" Then
             GoTo nee
             Else
             MsgBox "确认是否为数据表表格"
@@ -1551,11 +1555,12 @@ Sub 项目编号()
 nee:
         Application.ScreenUpdating = False
         Dim i, j, k, a2, fl, fy As Integer
-        Dim x, y, z As String
+        Dim x, y, z, syi As String
         a2 = 7
         x = "调节阀"
         y = "开关阀"
         z = InputBox("请输入项目编号：")
+        syi = "索引"
         If z = "" Then
             GoTo endd
         End If
@@ -1565,6 +1570,8 @@ nei:
             fl = 5
             ElseIf ActiveSheet.Cells(4, 4).Text = y Then
             fl = 5
+            ElseIf ActiveSheet.Cells(4, 8).Text = syi Then
+            fl = 10
             Else: fl = 11
         End If
         Do
@@ -1580,12 +1587,12 @@ nei:
 nei2:
         If ActiveSheet.Index <> Worksheets.Count Then
             ActiveSheet.Next.Activate
-            If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+            If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
                 GoTo nei2
             End If
             GoTo nei
         End If
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
         End If
         MsgBox "共写入" & i & "个    " & z
@@ -1595,7 +1602,7 @@ End Sub
 
 Sub 工程名称()
         Sheets(1).Select
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             MsgBox "确认是否为首页"
             '   GoTo endd
             If ActiveWorkbook.Sheets.Count < 2 Then
@@ -1606,7 +1613,7 @@ Sub 工程名称()
             Else
             Sheets(1).Select
         End If
-        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Or ActiveSheet.Cells(1, 8).Text = "仪表数据表" Then
             GoTo nee
             Else
             MsgBox "确认是否为数据表表格"
@@ -1620,6 +1627,7 @@ nee:
         x = "调节阀"
         y = "开关阀"
         z = InputBox("请输入工程名称：")
+        syi = "索引"
         If z = "" Then
             GoTo endd
         End If
@@ -1628,6 +1636,8 @@ nei:
             fl = 11
             ElseIf ActiveSheet.Cells(4, 4).Text = y Then
             fl = 11
+            ElseIf ActiveSheet.Cells(4, 8).Text = syi Then
+            fl = 19
             Else: fl = 20
         End If
         Do
@@ -1644,7 +1654,7 @@ nei:
             ActiveSheet.Next.Activate
             GoTo nei
         End If
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
         End If
         MsgBox "共写入" & i & "个    " & z
@@ -1654,7 +1664,7 @@ End Sub
 
 Sub 装置工区()
         Sheets(1).Select
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             MsgBox "确认是否为首页"
             '   GoTo endd
             If ActiveWorkbook.Sheets.Count < 2 Then
@@ -1665,7 +1675,7 @@ Sub 装置工区()
             Else
             Sheets(1).Select
         End If
-        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Or ActiveSheet.Cells(1, 8).Text = "仪表数据表" Then
             GoTo nee
             Else
             MsgBox "确认是否为数据表表格"
@@ -1674,11 +1684,12 @@ Sub 装置工区()
 nee:
         Application.ScreenUpdating = False
         Dim i, j, k, a2, fl, fy As Integer
-        Dim x, y, z, z2, z3 As String
+        Dim x, y, z, z2, z3, syi As String
         a2 = 3
         x = "调节阀"
         y = "开关阀"
         z = InputBox("请输入装置工区：")
+        syi = "索引"
         If z = "" Then
             GoTo endd
         End If
@@ -1687,6 +1698,8 @@ nei:
             fl = 11
             ElseIf ActiveSheet.Cells(4, 4).Text = y Then
             fl = 11
+            ElseIf ActiveSheet.Cells(4, 8).Text = syi Then
+            fl = 19
             Else: fl = 20
         End If
         Do
@@ -1703,7 +1716,7 @@ nei:
             ActiveSheet.Next.Activate
             GoTo nei
         End If
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
         End If
         MsgBox "共写入" & i & "个    " & z
@@ -1713,7 +1726,7 @@ End Sub
 
 Sub 数据表图号()
         Sheets(1).Select
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             MsgBox "确认是否为首页"
             '   GoTo endd
             If ActiveWorkbook.Sheets.Count < 2 Then
@@ -1724,7 +1737,7 @@ Sub 数据表图号()
             Else
             Sheets(1).Select
         End If
-        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text = "仪表数据表" Or ActiveSheet.Cells(1, 4).Text = "仪表数据表" Or ActiveSheet.Cells(1, 8).Text = "仪表数据表" Then
             GoTo nee
             Else
             MsgBox "确认是否为数据表表格"
@@ -1733,11 +1746,12 @@ Sub 数据表图号()
 nee:
         Application.ScreenUpdating = False
         Dim i, j, k, a2, fl, fy As Integer
-        Dim x, y, z, z2, z3 As String
+        Dim x, y, z, z2, z3, syi As String
         a2 = 5
         x = "调节阀"
         y = "开关阀"
         z = InputBox("请输入数据表图号：")
+        syi = "索引"
         If z = "" Then
             GoTo endd
         End If
@@ -1746,6 +1760,8 @@ nei:
             fl = 11
             ElseIf ActiveSheet.Cells(4, 4).Text = y Then
             fl = 11
+            ElseIf ActiveSheet.Cells(4, 8).Text = syi Then
+            fl = 19
             Else: fl = 20
         End If
         Do
@@ -1762,7 +1778,7 @@ nei:
             ActiveSheet.Next.Activate
             GoTo nei
         End If
-        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" Then
+        If ActiveSheet.Cells(1, 9).Text <> "仪表数据表" And ActiveSheet.Cells(1, 4).Text <> "仪表数据表" And ActiveSheet.Cells(1, 8).Text <> "仪表数据表" Then
             ActiveSheet.Cells(a2, fl).Value = ""    '首页页数清空
         End If
         MsgBox "共写入" & i & "个    " & z
