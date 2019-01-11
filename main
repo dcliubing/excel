@@ -71,7 +71,7 @@ Sub 工作簿生成()
         '工作表排序
         i% = Sheets.Count
         On Error Resume Next
-            For Each tmp In Array("双金属温度计", "热电阻", "温变", "压力表", "压变", "金属转子", "平衡流量计", "涡街", "电磁", "差压液位", "投入式静压", "音叉", "雷达", "分析仪", "调节阀", "开关阀") '工作表名
+            For Each tmp In Array("双金属温度计", "热电阻", "温变", "压力表", "压变", "金属转子", "平衡流量计", "涡街", "电磁", "差压液位", "音叉","投入式静压",  "雷达", "分析仪", "调节阀", "开关阀") '工作表名
             t = Sheets(tmp).[a1]
             If Err = Empty Then Sheets(tmp).Move after:=Sheets(i) Else Err.Clear
             Next
