@@ -1104,7 +1104,7 @@ Private Sub 首行格式()
         ActiveWindow.FreezePanes = True
 End Sub
 
-Sub 表格汇总()
+private Sub 表格汇总()
         Dim NewName6 As String
         Sheets(1).Name = "汇总表"
         Dim j9, yl, i, a2, ll, kk, fl, kh, kh2, fl2, dh, lh, a3, lh2 As Integer
