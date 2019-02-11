@@ -1,0 +1,49 @@
+Sub 加页()
+'
+' 宏2 宏
+'
+
+'
+Dim i, j As Integer
+
+i = 0
+
+Do
+
+i = i + 1
+
+
+ Loop Until Application.WorksheetFunction.CountA(ActiveSheet.Rows(i * 48 - 1)) = 0
+
+
+
+
+
+
+
+        Rows(1 & ":" & 48).Select
+
+    Selection.Copy
+
+   Rows((i - 1) * 48 + 1).Select
+
+  ActiveSheet.Paste
+   
+
+   
+   ActiveSheet.PageSetup.PrintArea = "$A$1:$AH$" & i * 48
+   
+   
+   j = i
+   
+  '    Exit Sub
+Do
+            Rows((i * 48) + 1).Select
+            ActiveWindow.SelectedSheets.HPageBreaks.Add Before:=ActiveCell
+            '   Set ActiveSheet.HPageBreaks(fy).Location = Rows((fy * 40) + 1)
+            i = i - 1
+        Loop While i > 0
+ 
+ 
+    Rows(j * 48).Select
+End Sub
