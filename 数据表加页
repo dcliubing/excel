@@ -12,6 +12,11 @@ Do
 
 k = k + 1
 
+
+
+If k > 10000 Then '如果格式错误缩短检索时间并避免复制错误
+GoTo ifsjb
+End If
 Loop Until ActiveSheet.Cells(k, 2) Like "*修改*"
 
 
@@ -49,4 +54,10 @@ Do
  
  
     Rows(j * (k + 1)).Select
+    
+    Exit Sub
+    
+ifsjb:
+
+MsgBox "检查数据表格式"
 End Sub
