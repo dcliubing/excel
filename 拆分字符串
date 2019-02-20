@@ -135,7 +135,7 @@ Sub 拆分()
             
             Sheets(2).Cells(j, lie2 + nn).Value = Sheets(1).Cells(hang, lie + nn)
             
-          MsgBox Sheets(1).Cells(hang, lie + nn)
+         
             
             Next nn
          
