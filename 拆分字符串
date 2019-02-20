@@ -1,9 +1,9 @@
 Sub 拆分()
         '
         ' 宏2 宏
-        Dim a, d, b, la, sjy, sj As String
+        Dim a, d, b, la, sjy  As String
         Dim arr, arr2 As Variant
-        Dim c, i, j, hang, lie, lie2, nn As Integer
+        Dim c, i, j, hang, lie, lie2, nn, sj As Integer
         
         i = 0
         j = 2
@@ -16,7 +16,7 @@ Sub 拆分()
 
 '       ActiveSheet.Name = "拆分汇总"
         
-        
+           sj = Sheets(1).UsedRange.Columns.Count
         
         'MsgBox la
         
@@ -41,8 +41,9 @@ Sub 拆分()
         b = Right(a, 1)
         d = Left((a), c)
         
-        sj = Sheets(1).UsedRange.Columns.Count
+   
         
+     
         
 
             For i = 0 To UBound(arr)
@@ -125,9 +126,16 @@ Sub 拆分()
         
          Sheets(2).Cells(j, lie2).Value = sjy
          
+
+         
+         
                       For nn = 2 To sj - 1 Step 1
+                      
+                  '      MsgBox lie
             
             Sheets(2).Cells(j, lie2 + nn).Value = Sheets(1).Cells(hang, lie + nn)
+            
+          MsgBox Sheets(1).Cells(hang, lie + nn)
             
             Next nn
          
@@ -142,11 +150,11 @@ Sub 拆分()
         Range(Cells(1, 1), Cells(1, 10)) = arr
         
          Range(Cells(1, 1), Cells(j - 2, 10)).Select
-        Call 格式整理
+       Call 格式整理
         Range(Cells(1, 1), Cells(j - 2, 10)).Select
         Selection.Columns.AutoFit
         ' 加粗冻结 宏
         Range(Cells(1, 1), Cells(1, 10)).Select
-        Call 首行格式
+      Call 首行格式
 
 End Sub
