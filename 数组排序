@@ -1,4 +1,4 @@
-  Sub 数组排序2222222222222222222222222222()
+        Sub 数组排序()
     Application.ScreenUpdating = False
 
                     Dim a, d, b, la, sjy  As String
@@ -90,9 +90,18 @@
 
                     arr(szh, szl) = Sheets(1).Cells(hang, szl)
 
-
+   Range(Cells(hang, 1), Cells(hang, sj)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
 
                     Next szl
+                    
+                    
 
                     End If
 
@@ -227,7 +236,49 @@ szh = szh + 1
                    szh = 1
 
          Loop Until sjy = "总数量" Or hang > 1000
+         
+        
+         
+                             '删除空行
+
+                         For kh2 = hang To 2 Step -1
+                         
+                         
+                         
+                     If Application.WorksheetFunction.CountA(Sheets(1).Range(Cells(kh2, 1), Cells(kh2, sj))) = 0 Then
+                     
+                     
+                     
+                     
+                         Rows(kh2).Delete
+     
+     
+                '       elseif    Range(Cells(kh2, 1), Cells(kh2, sj)).Interior.Color=65535
+
+     
+     
+     
+                        End If
+                     Next kh2
+
+
+
+
+
+
 
                     ' Sheets(2).Cells(10, 1).Resize(1, 10) = WorksheetFunction.Index(arr, 2, 0)
+
+                    ' Sheets(2).Cells(10, 1).Resize(1, 10) = WorksheetFunction.Index(arr, 2, 0)
+
+    Dim ii As Long
+
+For ii = Range("A65536").End(xlUp).Row To 2 Step -1
+  If WorksheetFunction.CountIf(Range("A2:A" & ii), Cells(ii, 1)) > 1 And Range(Cells(ii, 1), Cells(ii, 10)).Interior.Color = 65535 Then
+    Cells(ii, 1).EntireRow.Delete
+  End If
+Next
     Application.ScreenUpdating = True
+    Set arr = Nothing
+    'Call 删除重复行
 End Sub
