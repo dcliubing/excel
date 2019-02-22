@@ -1,11 +1,11 @@
 Sub 数组排序()
-
+                                                                                                                                                                                                                                                   
 
         '
         ' 宏2 宏
         Dim a, d, b, la, sjy  As String
         Dim arr, arr2 As Variant
-        Dim c, i, j, hang, lie, lie2, nn, hang2, nu, szh, szl, sj As Integer
+        Dim c, i, j, hang, lie, lie2, nn, hang2, nu, szh, szl, ins, sj As Integer
         
         
         nu = 0
@@ -13,6 +13,7 @@ Sub 数组排序()
         hang2 = 1
         lie = 1
         lie2 = 1
+      szh = 0
       
   Sheets(1).Select
  ' Sheets.Add After:=ActiveSheet
@@ -59,14 +60,14 @@ Do
         
 Loop Until sjy = "总数量" Or hang > 1000
         
-        
+        szh = 0
         hang = 2
         
         ReDim arr(1 To nu, 1 To sj)
         
         
         Do
-
+ szh = szh + 1
                         sjy = Sheets(1).Cells(hang, 1)
                         
                         
@@ -90,22 +91,102 @@ Loop Until sjy = "总数量" Or hang > 1000
                                              Next szl
                                              
                                          
+                                    Else
+                                    
+                                    
+                                hang = hang + 1
+                       
+                                
+                                End If
+                                
+                              
+                                
+        
+Loop Until sjy = "总数量" Or hang > 1000
+        
+        
+       Sheets(2).Cells(1, 1).Resize(UBound(arr, 1), UBound(arr, 2)) = arr
+    'MsgBox arr(2, 2)
+
+  ' Sheets(2).Cells(10, 1).Resize(1, 10) = WorksheetFunction.Index(arr, 2, 0)
+  
+  '隔行插入
+'  hang = hang - 1
+  
+ ' For hang = hang To 3 Step -1
+  
+  
+'  Sheets(1).Rows(hang).Select
+ '       Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+'  Next hang
+  
+ ' MsgBox hang
+
+  
+      
+    szh = 0
+    hang = 1
+   Do
+
+                        sjy = Sheets(1).Cells(hang, 1)
+                        
+                  Sheets(1).Activate
+                  
+
+                        
+                                If InStr(sjy, "T-") > 0 Then
+                                
+                                 MsgBox "333"
+                                
+                                             ' MsgBox Sheets(1).Cells(hang, lie)
+                                             
+                                                a = Split(sjy, "T-")
+                                                la = Join(a, "")
+                                               ' c = Len(a) - 1
+                                               ' b = Right(a, 1)
+                                              '  d = Left((a), c)
+                                                
+                                            Do
+                                            
+                                             szh = szh + 1
+                                            sa = Split(arr(szh, 1), "V-")
+                                            
+                                            sb = Join(sa, "")
+                                            
+                                            MsgBox sb
+                                            If la = sb Then
+                                             MsgBox hang
+                                            
+                                            Sheets(1).Cells(10, 1).Resize(1, sj) = WorksheetFunction.Index(arr, szh, 0)
+                                            
+                                            End If
+                                            
+                                            
+                                           
+                                            
+                                            Loop Until szh = nu
+                                            
+                                             
+                                             
+                                        '     For szl = 1 To sj
+
+                                        
+                                            '    arr(szh, szl) = Sheets(1).Cells(hang, szl)
+                                                
+                                                
+                                        '     Next szl
+                                             
+                                         
                                                 
                           
                                 
                                 End If
                                 
                              
-                                szh = szh + 1
+                                
                                 hang = hang + 1
         
 Loop Until sjy = "总数量" Or hang > 1000
-        
-        
-    '   Sheets(2).Cells(1, 1).Resize(UBound(arr, 1), UBound(arr, 2)) = arr
-    'MsgBox arr(2, 2)
-    
-    
     
   ' Sheets(2).Cells(10, 1).Resize(1, 10) = WorksheetFunction.Index(arr, 2, 0)
  
