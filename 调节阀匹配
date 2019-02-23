@@ -74,7 +74,7 @@ Sub 调节阀匹配()
                                     Sheets(1).Cells(hang + 1, 1).Resize(1, sj) = WorksheetFunction.Index(arr, szh, 0)
                                 End If
                                 szh = szh + 1
-                            Loop Until szh = nu
+                            Loop Until szh > nu
                         End If
                         
                         hang = hang + 1
