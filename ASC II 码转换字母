@@ -1,0 +1,196 @@
+
+Sub 拆分()
+        '
+        ' 宏2 宏
+        Dim a, d, b, la, sjy  As String
+        Dim ARR(1 To 27), arr2(1 To 27) As Variant
+        Dim c, i, j, hang, lie, lie2, nn, sj, dx, xx, nu As Integer
+        
+        i = 0
+        j = 2
+        hang = 2
+        lie = 1
+        lie2 = 1
+        nu = 1
+      Sheets(1).Select
+      Sheets.Add After:=ActiveSheet
+
+'       ActiveSheet.Name = "拆分汇总"
+        
+           sj = Sheets(1).UsedRange.Columns.Count
+        
+        'MsgBox la
+        
+        For dx = 65 To 91
+        
+       
+        
+        ARR(nu) = Chr(dx)
+        
+    '    MsgBox ARR
+         nu = nu + 1
+        Next dx
+        
+        
+        nu = 1
+        
+        For xx = 97 To 123
+        
+        arr2(nu) = Chr(xx)
+        
+        nu = nu + 1
+     '   MsgBox arr2
+        
+        Next xx
+        
+        
+       
+        
+       ' ARR = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "LAST")
+        
+       '  ARR = Array("A-Z", "LAST")
+      '  arr2 = Array("a-z", "LAST")
+        
+        'arr = Array("[A-E]")
+        
+        'MsgBox arr(4)
+        
+        Do
+
+        sjy = Sheets(1).Cells(hang, lie)
+
+        If InStr(sjy, "~") > 0 Then
+        
+        
+        a = Split(sjy, "~")(0)
+        la = Right(sjy, 1)
+        c = Len(a) - 1
+        b = Right(a, 1)
+        d = Left((a), c)
+        
+   
+        
+     
+    '    MsgBox UBound(ARR)
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            For i = 1 To UBound(ARR)
+            
+                   
+       
+            
+            If ARR(i) = b Then
+            
+            b = ARR(i + 1)
+            
+            'MsgBox b
+            
+            Sheets(2).Cells(j, lie2).Value = d & ARR(i)
+            
+            
+            For nn = 2 To sj - 1 Step 1
+            
+             Sheets(2).Cells(j, lie2 + nn).Value = Sheets(1).Cells(hang, lie + nn)
+            
+            Next nn
+            
+            j = j + 1
+            
+ 
+            
+            ElseIf arr2(i) = b Then
+            
+            b = arr2(i + 1)
+            
+            
+            
+            'MsgBox b
+            
+             Sheets(2).Cells(j, lie2).Value = d & arr2(i)
+            
+             For nn = 2 To sj - 1 Step 1
+            
+            Sheets(2).Cells(j, lie2 + nn).Value = Sheets(1).Cells(hang, lie + nn)
+            
+            Next nn
+            
+            j = j + 1
+ 
+            'MsgBox i
+            End If
+            
+            
+            
+            If ARR(i) = la Or arr2(i) = la Then
+            
+            Exit For
+            
+            End If
+            
+            
+           
+            Next i
+                   
+          
+           
+           
+           
+        '  If lie2 < ActiveSheet.UsedRange.Columns.Count Then
+          
+        '  lie2 = lie2 + 1
+          
+       '   GoTo jixu
+          
+        '  End If
+                   
+                   
+                   
+       
+            hang = hang + 1
+        
+        
+        
+        Else
+        
+         Sheets(2).Cells(j, lie2).Value = sjy
+         
+
+         
+         
+                      For nn = 2 To sj - 1 Step 1
+                      
+                  '      MsgBox lie
+            
+            Sheets(2).Cells(j, lie2 + nn).Value = Sheets(1).Cells(hang, lie + nn)
+            
+         
+            
+            Next nn
+         
+        j = j + 1
+        hang = hang + 1
+        End If
+        Loop Until sjy = "总数量" Or hang > 1000
+
+       ' ARR = Array("位号", "数量", "用途", "温度", "压力", "量程", "PID号", "仪表类型", "数据表页号", "序号")
+        
+
+     '   Range(Cells(1, 1), Cells(1, 10)) = ARR
+        
+         Range(Cells(1, 1), Cells(j - 2, 10)).Select
+     '  Call 格式整理
+        Range(Cells(1, 1), Cells(j - 2, 10)).Select
+        Selection.Columns.AutoFit
+        ' 加粗冻结 宏
+        Range(Cells(1, 1), Cells(1, 10)).Select
+    '  Call 首行格式
+
+End Sub
