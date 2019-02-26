@@ -1,6 +1,5 @@
 
 
-
 Sub 开关阀位反馈加行()
 Application.ScreenUpdating = False
 Dim hang, senu, hangs, ii, sh, e, f As Integer
@@ -26,9 +25,9 @@ hangs = hang + senu - 1
 For sh = hangs To hang Step -1
 
 sjy = Sheets(1).Cells(sh, 1)
- Sheets(1).Cells(sh, 1).Interior.Color = 6
 
-If InStr(sjy, "V-") > 0 And Sheets(1).Cells(sh, 1).Interior.Color = 6 Then
+
+If InStr(sjy, "V-") > 0 Then
                             a = Split(sjy, "V-")
                             b = Join(a, "ZVSO-")
                             c = Join(a, "ZVSC-")
@@ -50,11 +49,7 @@ e = e + 1
                       ii = ActiveSheet.UsedRange.Rows.Count
                       Sheets(1).Range(Cells(hang, 1), Cells(hangs + e, 1)).Select
                       
-    With Selection.Interior
-        .Pattern = xlNone
-        .TintAndShade = 0
-        .PatternTintAndShade = 0
-    End With
+
 
 Application.ScreenUpdating = True
 End Sub
