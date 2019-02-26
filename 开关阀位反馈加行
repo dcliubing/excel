@@ -1,0 +1,40 @@
+Sub 开关阀位反馈加行()
+
+Dim hang As Integer
+
+'
+' 宏1 宏
+'
+Dim sjy, a, b, c, d, e, f, i As String
+
+i = 2
+
+hang = Selection.Row
+
+
+sjy = Sheets(1).Cells(hang, 1)
+ If InStr(sjy, "V-") > 0 Then
+                            a = Split(sjy, "V-")
+                            b = Join(a, "ZVSO-")
+                            c = Join(a, "ZVSC-")
+                       
+    
+Rows(hang + 1).Select
+     For f = 1 To i
+
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Next f
+                      
+       Sheets(1).Cells(hang + 1, 1) = b
+        Sheets(1).Cells(hang + 2, 1) = c
+                      
+                      
+
+
+
+    
+    
+    
+    End If
+End Sub
+
