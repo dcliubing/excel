@@ -1,0 +1,26 @@
+Sub 选择区域首行及行数()
+
+Dim hang As Integer
+
+'
+' 宏1 宏
+'
+Dim sjy, a, b, c, d, e, f, i As String
+
+i = 2
+
+hang = Selection.Row
+
+a = Selection.Rows.Count
+
+
+MsgBox hang
+MsgBox a
+
+
+
+    
+    
+    
+    
+End Sub
