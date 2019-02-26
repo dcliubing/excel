@@ -67,6 +67,15 @@ Sub 调节阀匹配()
                         If InStr(sjy, "T-") > 0 And nu > 0 Then
                             a = Split(sjy, "T-")
                             la = Join(a, "")
+                               GoTo TW
+                            
+                         ElseIf InStr(sjy, "E-") > 0 And nu > 0 Then
+                            a = Split(sjy, "E-")
+                            la = Join(a, "")
+                            
+                            
+TW:
+                            
                             Do
                                 sa = Split(arr(szh, 1), "V-")
                                 sb = Join(sa, "")
