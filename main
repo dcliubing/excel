@@ -165,7 +165,7 @@ Private Sub 平衡流量计列表()
         Dim NewName6 As String
         NewName6 = "平衡流量计"
         Workbooks(newname2 & ".xls").Sheets.Add.Name = NewName6
-        Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2 As Integer
+        Dim j9, n9, yl, i, a2, ll, fl, kh, kh2, fl2, dh, lh, lh2, num7 As Integer
         Dim arr() As Variant
         n9 = 9
         yl = 10 '数据源列
@@ -175,6 +175,7 @@ Private Sub 平衡流量计列表()
         ll = 0  '单个数据表页中包含几列仪表
         a2 = 2  '新表行
         dh = 0 '被删除行数
+        num7 = 7
 nei:
             If n9 > 9 And n9 < 16 Then
                 ElseIf n9 > 16 And n9 < 23 Then
@@ -188,11 +189,14 @@ nei:
 jixu:
             Do
                 Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
+                 Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 22).Value = ActiveSheet.Cells(num7, 22).Text
                 ll = ll + 1
                 yl = yl + 6
                 a2 = a2 + 1
                     If ll Mod 3 = 0 Then
                         j9 = j9 + 50
+                        num7 = num7 + 50
+                        
                         i = i + 50
                         yl = 10
                     End If
@@ -204,6 +208,7 @@ jixu:
         fl = fl + 1
         yl = 10
         ll = 0
+        num7 = 7
         a2 = 2
 jia:
         n9 = n9 + 1
@@ -219,17 +224,17 @@ ee:
             Next kh2
         lh = kh - dh   '新表最终行数
         lh2 = lh + 1
-        arr = Array("位号", "用途", "数量", "PID号", "管道编号", "管道材质", "管径", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "差压", "节流孔直径", "节流元件材料", "法兰标准", "法兰尺寸", "法兰材质", "仪表类型")
+        arr = Array("位号", "用途", "数量", "PID号", "管道编号", "管道材质", "管径", "介质", "压力", "温度", "最大流量", "正常流量", "最小流量", "量程", "差压", "节流孔直径", "节流元件材料", "法兰标准", "法兰尺寸", "法兰材质", "仪表类型", "数据表页号")
         Range(Cells(2, fl), Cells(lh, fl)) = "平衡流量计"
-        Range(Cells(1, 1), Cells(1, fl2)) = arr
-        Range(Cells(1, 1), Cells(lh, fl2)).Select
+        Range(Cells(1, 1), Cells(1, fl2 + 1)) = arr
+        Range(Cells(1, 1), Cells(lh, fl2 + 1)).Select
         Call 格式整理
         '自动列宽
         Selection.Columns.AutoFit
         Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 1).Value = "总数量"
         Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(lh2, 3).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 3), Cells(lh, 3)))
         ' 加粗冻结 宏
-        Range(Cells(1, 1), Cells(1, fl2)).Select
+        Range(Cells(1, 1), Cells(1, fl2 + 1)).Select
         Call 首行格式
         Workbooks(newname).Activate '返回数据表文件
 endd:
@@ -829,12 +834,13 @@ nei2:
 endd:
 End Sub
 
+
 Private Sub 热电阻列表()
         Application.ScreenUpdating = False
         Dim NewName6 As String
         NewName6 = "热电阻"
         Workbooks(newname2 & ".xls").Sheets.Add.Name = NewName6
-        Dim j9, n9, yl, i, a2, ll, tt, j10, ss, zz, fl, kh, kh2, fl2, dh, lh, lh2, emp As Integer
+        Dim j9, n9, yl, i, a2, ll, tt, j10, ss, zz, fl, kh, kh2, fl2, dh, lh, lh2, emp, num7 As Integer
         'Dim att As String
         Dim arr() As Variant
         yl = 1 '数据源列
@@ -845,6 +851,7 @@ Private Sub 热电阻列表()
         a2 = 2  '新表行
         fl = 1  '新表列
         emp = 0
+        num7 = 7
         dh = 0 '被删除行数
         j10 = 29
         j11 = 37
@@ -860,6 +867,8 @@ nei:
             Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 9).Value = ActiveSheet.Cells(j11, 12).Text
             Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 10).Value = ActiveSheet.Cells(j12, 12).Text
             Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 11).Value = ActiveSheet.Cells(j13, 12).Text
+            
+               Workbooks(newname2 & ".xls").Sheets(NewName6).Cells(a2, 15).Value = ActiveSheet.Cells(num7, 22).Text
             '          Sheets(NewName6).Cells(a2, fl).Value = Sheets(kvname).Cells(j9, yl).Text
             '         Sheets(NewName6).Cells(a2, 8).Value = Sheets(kvname).Cells(j10, 12).Text
             '
@@ -877,6 +886,8 @@ nei2:
         j10 = j10 + 50
         j9 = j9 + 36
         i = i + 50
+        num7 = num7 + 50
+        
         If Application.WorksheetFunction.CountA(ActiveSheet.Rows(i)) = 0 Then
             Do
                 yl = yl + 1
@@ -890,6 +901,7 @@ nei2:
                     fl = fl + 1
                     i = 0
                     a2 = 2
+                    num7 = 7
                     GoTo nei
                 End If
             Loop Until yl = 25
@@ -897,15 +909,15 @@ nei2:
         End If
         Workbooks(newname2 & ".xls").Sheets(NewName6).Activate
         ActiveSheet.Cells(a2, 1) = "总数量"
-        arr = Array("位号", "介质", "压力", "温度", "保护管材料", "PID号", "用途", "分度号", "螺纹规格", "法兰标准及等级", "法兰尺寸及密封面", "数量", "量程", "仪表类型")
+        arr = Array("位号", "介质", "压力", "温度", "保护管材料", "PID号", "用途", "分度号", "螺纹规格", "法兰标准及等级", "法兰尺寸及密封面", "数量", "量程", "仪表类型", "数据表页号")
         Range(Cells(2, 14), Cells(n9 - 1, 14)) = "热电阻"
-        Range(Cells(1, 1), Cells(1, 14)) = arr
-        Range(Cells(1, 1), Cells(a2 - 1, 14)).Select
+        Range(Cells(1, 1), Cells(1, 15)) = arr
+        Range(Cells(1, 1), Cells(a2 - 1, 15)).Select
         Call 格式整理
         '自动列宽
         Selection.Columns.AutoFit
         ' 加粗冻结 宏
-        Range(Cells(1, 1), Cells(1, 14)).Select
+        Range(Cells(1, 1), Cells(1, 15)).Select
         Call 首行格式
         Workbooks(newname).Activate   'fan hui shu ju biao
 endd:
