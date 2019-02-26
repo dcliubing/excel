@@ -5,13 +5,11 @@ Sub 开关阀位反馈加行()
 Application.ScreenUpdating = False
 Dim hang, senu, hangs, ii, sh, e, f As Integer
 
-'
-' 宏1 宏
-'
+
 Dim sjy, a, b, c, d As String
 
 i = 2
-
+e = 0
 hang = Selection.Row
 
 
@@ -22,22 +20,13 @@ hangs = hang + senu - 1
 
 
 
-For e = hang To hangs
-
-
- Sheets(1).Cells(e, 1).Interior.Color = 6
-
-Next e
-
-
-ii = ActiveSheet.UsedRange.Rows.Count
 
 
 
-
-For sh = ii To 2 Step -1
+For sh = hangs To hang Step -1
 
 sjy = Sheets(1).Cells(sh, 1)
+ Sheets(1).Cells(sh, 1).Interior.Color = 6
 
 If InStr(sjy, "V-") > 0 And Sheets(1).Cells(sh, 1).Interior.Color = 6 Then
                             a = Split(sjy, "V-")
@@ -47,7 +36,7 @@ If InStr(sjy, "V-") > 0 And Sheets(1).Cells(sh, 1).Interior.Color = 6 Then
     
 Rows(sh + 1).Select
      For f = 1 To i
-
+e = e + 1
     Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
     Next f
                       
@@ -59,12 +48,13 @@ Rows(sh + 1).Select
                       Next sh
                       
                       ii = ActiveSheet.UsedRange.Rows.Count
-                      Sheets(1).Range(Cells(2, 1), Cells(ii, 1)).Select
-                              With Selection.Interior
+                      Sheets(1).Range(Cells(hang, 1), Cells(hangs + e, 1)).Select
+                      
+    With Selection.Interior
         .Pattern = xlNone
         .TintAndShade = 0
         .PatternTintAndShade = 0
     End With
-Sheets(1).Rows(ii).Select
+
 Application.ScreenUpdating = True
 End Sub
