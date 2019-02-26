@@ -1,5 +1,8 @@
-Sub 开关阀位反馈加行()
 
+
+
+Sub 开关阀位反馈加行()
+Application.ScreenUpdating = False
 Dim hang, senu, hangs, ii, sh, e, f As Integer
 
 '
@@ -63,4 +66,5 @@ Rows(sh + 1).Select
         .PatternTintAndShade = 0
     End With
 Sheets(1).Rows(ii).Select
+Application.ScreenUpdating = True
 End Sub
