@@ -46,7 +46,7 @@ e = e + 1
                       
                       Next sh
                       
-                      ii = ActiveSheet.UsedRange.Rows.Count
+                     
                       Sheets(1).Range(Cells(hang, 1), Cells(hangs + e, 1)).Select
                       
 
