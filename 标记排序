@@ -1,0 +1,128 @@
+
+Sub 标记排序()
+Application.ScreenUpdating = False
+Dim hang, senu, hangs, ii, sh, e, al, als, n, an, i, f As Integer
+
+
+Dim sjy, a, b, c, d As String
+
+
+If ActiveSheet.Name <> "拆分汇总表" Then
+
+
+
+Exit Sub
+
+End If
+
+
+
+n = 0
+
+al = 2
+
+
+
+
+
+ss:
+sjy = ActiveSheet.Cells(al, 11)
+
+
+
+If sjy = "" Then
+
+
+
+al = al + 1
+
+
+If al > 2000 Then
+
+
+Exit Sub
+
+End If
+
+
+GoTo ss
+
+Else
+
+sjy = ActiveSheet.Cells(al, 11)
+
+
+als = al
+
+Do
+
+al = al + 1
+If sjy = ActiveSheet.Cells(al, 11) Then
+
+n = n + 1
+
+    Rows(al).Select
+    Selection.Cut
+    Rows(als).Select
+   ' Selection.Offset(1).Select
+   Selection.Insert Shift:=xlDown
+    
+    End If
+
+   Loop Until al = 2000
+   
+   
+   an = als + n
+   
+   n = 0
+   
+
+   
+   If al < 2000 Then
+   
+   
+   GoTo ss
+   
+   End If
+   
+   
+   
+ '  MsgBox an
+   
+ '  MsgBox als
+   
+   
+    Rows(als & ":" & an).Select
+    ActiveSheet.Sort.SortFields.Clear
+    ActiveSheet.Sort.SortFields.Add Key:=Range(Cells(als, 12), Cells(an, 12)), _
+        SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:=xlSortNormal
+    With ActiveSheet.Sort
+        .SetRange Range(Cells(als, 1), Cells(an, 12))
+        .Header = xlGuess
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+   
+     
+   
+   End If
+   
+   
+   al = an + 1
+   
+   
+   For i = 1 To 1
+   
+   
+   GoTo ss
+   
+   
+   
+   Next i
+   
+   
+
+Application.ScreenUpdating = True
+End Sub
