@@ -1,4 +1,4 @@
-Sub 拆分()
+Sub 拆2222222222222222222分()
         '
         ' 宏2 宏
         Dim a, d, b, la, sjy  As String
@@ -28,11 +28,37 @@ Sub 拆分()
         
         'MsgBox arr(4)
         
+        
+           If InStr(sjy, "G-") > 0 Then
+        
+        
+                 Sheets(2).Cells(j, lie2).Value = sjy
+         
+
+         
+         
+                      For nn = 2 To sj - 1 Step 1
+                      
+                  '      MsgBox lie
+            
+            Sheets(2).Cells(j, lie2 + nn).Value = Sheets(1).Cells(hang, lie + nn)
+            
+         
+            
+            Next nn
+         
+        j = j + 1
+        hang = hang + 1
+        
+        End If
+        
+        
+        
         Do
 
         sjy = Sheets(1).Cells(hang, lie)
 
-        If InStr(sjy, "~") > 0 Then
+        If InStr(sjy, "~") > 0 And InStr(sjy, "G-") = 0 Then
         
         
         a = Split(sjy, "~")(0)
@@ -148,13 +174,6 @@ Sub 拆分()
         
 
         Range(Cells(1, 1), Cells(1, 10)) = arr
-        
-         Range(Cells(1, 1), Cells(j - 2, 10)).Select
-       Call 格式整理
-        Range(Cells(1, 1), Cells(j - 2, 10)).Select
-        Selection.Columns.AutoFit
-        ' 加粗冻结 宏
-        Range(Cells(1, 1), Cells(1, 10)).Select
-      Call 首行格式
+    
 
 End Sub
