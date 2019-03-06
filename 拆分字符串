@@ -158,6 +158,12 @@ Sub 拆2222222222222222222分()
         
 
         Range(Cells(1, 1), Cells(1, 10)) = arr
-    
+           'Range(Cells(1, 1), Cells(j - 2, 10)).Select
+      ' Call 格式整理
+      '  Range(Cells(1, 1), Cells(j - 2, 10)).Select
+      '  Selection.Columns.AutoFit
+        ' 加粗冻结 宏
+      '  Range(Cells(1, 1), Cells(1, 10)).Select
+      'Call 首行格式
 
 End Sub
