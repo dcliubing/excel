@@ -40,10 +40,11 @@ i = i + 1
    
 ActiveSheet.Names.Add "Print_Area", ActiveSheet.Range("A1").Resize(i * (k + 1), z + 1) '动态打印区域
    
-  ' MsgBox z
+
    
    j = i
    
+    ActiveSheet.ResetAllPageBreaks '重置所有水平分页符
 
 Do
             Rows((i * (k + 1)) + 1).Select
