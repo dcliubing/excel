@@ -1,0 +1,118 @@
+Private Sub 表格汇总()
+        Dim NewName6 As String
+        Sheets(1).Name = "汇总表"
+        Dim j9, yl, i, a2, ll, kk, fl, kh, kh2, fl2, dh, lh, a3, lh2, ke As Integer
+        Dim arr() As Variant
+        yl = 1
+        fl = 0
+        j9 = 2
+        i = 1
+        ll = 0
+        a2 = 2
+        dh = 1
+        kk = 0
+nei2:
+        Sheets(2).Activate
+        
+        ke = 0
+nei:
+        Do
+            kk = kk + 1
+            If ActiveSheet.Cells(1, kk).Text = "位号" And fl = 1 Then
+                ke = 1
+                yl = kk
+                ElseIf ActiveSheet.Cells(1, kk).Text = "数量" And fl = 2 Then
+                yl = kk
+                ke = 1
+                ElseIf ActiveSheet.Cells(1, kk).Text = "用途" And fl = 3 Then
+                yl = kk
+                ke = 1
+                ElseIf ActiveSheet.Cells(1, kk).Text = "温度" And fl = 4 Then
+                yl = kk
+                ke = 1
+                ElseIf ActiveSheet.Cells(1, kk).Text = "压力" And fl = 5 Then
+                yl = kk
+                ke = 1
+                ElseIf ActiveSheet.Cells(1, kk).Text = "量程" And fl = 6 Then
+                yl = kk
+                ke = 1
+                ElseIf ActiveSheet.Cells(1, kk).Text = "PID号" And fl = 7 Then
+                yl = kk
+               ke = 1
+                
+                        ElseIf ActiveSheet.Cells(1, kk).Text = "防爆等级" And fl = 8 Then
+                        
+                yl = kk
+                
+         ke = 1
+                
+                
+                
+                 ElseIf ActiveSheet.Cells(1, kk).Text = "仪表类型" And fl = 9 Then
+                yl = kk
+                ke = 1
+                ElseIf ActiveSheet.Cells(1, kk).Text = "数据表页号" And fl = 10 Then
+                yl = kk
+                ke = 1
+            End If
+        Loop Until ActiveSheet.Cells(1, kk).Text = ""
+            kk = 0
+        If fl = 0 Then
+            GoTo nx
+        End If
+      '  If ActiveSheet.Name = "调节阀" And fl = 6 Then
+       '     yl = 27
+        '    ElseIf ActiveSheet.Name = "音叉" And fl = 6 Then
+         '   yl = 27
+         '   ElseIf ActiveSheet.Name = "分析仪" And fl = 4 Then
+         '   yl = 27
+         '   ElseIf ActiveSheet.Name = "分析仪" And fl = 5 Then
+         '   yl = 27
+         '   ElseIf ActiveSheet.Name = "分析仪" And fl = 6 Then
+         '   yl = 27   '取空列排除
+      '  End If
+        Do
+        
+        If ke = 1 Then
+            Sheets(1).Cells(a2, fl).Value = ActiveSheet.Cells(j9, yl).Text
+            
+             End If
+            If fl = 11 Then   '生成第11列序号
+                Sheets(1).Cells(a2, 11).Value = a2 - 1
+            End If
+            j9 = j9 + 1
+            a2 = a2 + 1
+            
+            
+           
+        Loop Until ActiveSheet.Cells(j9, 1).Text = "总数量"
+        j9 = 2
+        
+        ke = 0
+        If ActiveSheet.Index <> Worksheets.Count Then
+            ActiveSheet.Next.Activate
+            GoTo nei
+        End If
+            a3 = a2
+nx:
+         ke = 0
+            a2 = 2
+            fl = fl + 1
+            j9 = 2
+        If fl < 12 Then
+            GoTo nei2
+        End If
+        Sheets(1).Activate
+        arr = Array("位号", "数量", "用途", "温度", "压力", "量程", "PID号", "防爆等级", "仪表类型", "数据表页号", "序号")
+        Range(Cells(1, 1), Cells(1, 11)) = arr
+        Sheets(1).Cells(a3, 1).Value = "总数量"
+        Sheets(1).Cells(a3, 2).Value = Application.WorksheetFunction.Sum(Range(Cells(2, 2), Cells(a3, 2)))
+        Range(Cells(1, 1), Cells(a3 - 1, 11)).Select
+        Call 格式整理
+        Range(Cells(1, 1), Cells(a3, 11)).Select
+        Selection.Columns.AutoFit
+        ' 加粗冻结 宏
+        Range(Cells(1, 1), Cells(1, 11)).Select
+        Call 首行格式
+endd:
+End Sub
