@@ -942,6 +942,7 @@ Sub 序号生成()
             GoTo endd
         End If
 nee:
+        On Error GoTo endd
         i = InputBox("输入开始页码") - 1
         'ms = MsgBox("是否考虑首页", vbOKCancel)
         'If ms = vbOK Then
