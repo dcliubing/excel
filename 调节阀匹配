@@ -16,15 +16,14 @@ Sub 调节阀匹配()
                                 For sna = Sheets.Count To 1 Step -1
         Debug.Print Sheets(sna).Name
         If Sheets(sna).Name = "调节阀匹配" Then
-            Sheets(sna).Delete
+            Sheets(sna).Delete  
+            If Sheets(sna).Name = "调节阀匹配" Then
+            Exit Sub
+            End If
         End If
     Next
     
-       For sna = Sheets.Count To 1 Step -1
-           If Sheets(sna).Name = "调节阀匹配" Then
-            Exit Sub
-        End If
-    Next
+
     
     
                       Sheets("汇总表").Select
