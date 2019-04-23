@@ -1,0 +1,169 @@
+Sub 监控表位号()
+
+
+
+        Dim a, d, b, la, ain, aon, din, don, rtdn, sjy, sj As String
+        Dim arr, arr2 As Variant
+        Dim c, i, j, hang, lie, lie2, jj, nn As Integer
+        c = 0
+        i = 0
+        j = 14
+        hang = 2
+        lie = 1
+        lie2 = 1
+        ain = 0
+        aon = 0
+        din = 0
+        don = 0
+        rtdn = 0
+jj = 1
+
+
+Do
+
+lie = lie + 1
+
+
+
+Loop Until Application.WorksheetFunction.CountA(Sheets("拆分汇总").Rows(lie)) = 0
+
+lie = lie - 3
+
+
+MsgBox lie
+
+For nn = 1 To lie
+
+jj = jj + 1
+
+
+
+
+For i = 1 To 4
+
+
+If Sheets("拆分汇总").Cells(jj, j).Value <> "" Then
+
+
+
+c = c + 1
+End If
+
+j = j + 1
+Next i
+
+
+j = 14
+
+
+
+If Sheets("拆分汇总").Cells(jj, 12).Value = "" Then
+
+                If c > 0 Then
+                
+                sj = "A"
+                
+                
+                Else
+               '  Sheets("拆分汇总").Cells(jj, 2).Value = Sheets("拆分汇总").Cells(jj, 1).Value
+               sj = ""
+               
+                 
+                 End If
+ 
+ 
+ Else
+                If Sheets("拆分汇总").Cells(jj, 18).Value = "" Then
+                
+                        If c > 0 Then
+                        
+                        
+                        
+                        sj = "CA"
+                        
+                        Else
+                        
+                        sj = "C"
+                        
+                        
+                        End If
+                        
+                Else
+                
+                       If c > 0 Then
+                       
+                       
+                       sj = "SA"
+                       
+                       Else
+                       
+                       sj = "S"
+                       
+                       
+                       End If
+                       
+                       
+                       
+                End If
+                
+                
+End If
+
+
+
+
+
+                        
+                        
+
+
+c = 0
+
+
+MsgBox sj
+
+Next
+
+
+
+
+
+
+
+
+
+
+
+GoTo ttt
+         Do
+
+          If InStr(Sheets("拆分汇总").Cells(jj, 1).Value, "T-") > 0 Then
+          
+          
+          Sheets("拆分汇总").Cells(jj, 2).Value = Split(Sheets("拆分汇总").Cells(jj, 1).Value, "T-")
+           Sheets("拆分汇总").Cells(jj, 2).Value = Join(Split(Sheets("拆分汇总").Cells(jj, 1).Value, "T-"), "I-")
+             
+         If Sheets("拆分汇总").Cells(jj, 14).Value = "" Then
+    Sheets("拆分汇总").Cells(jj, 2).Value = Split(Join(Split(Sheets("拆分汇总").Cells(jj, 1).Value, "T-"), "I-"), "I-")
+           
+      Sheets("拆分汇总").Cells(jj, 2).Value = Join(Split(Join(Split(Sheets("拆分汇总").Cells(jj, 1).Value, "T-"), "I-"), "I-"), "IA-")
+         End If
+       
+         ElseIf InStr(Sheets("拆分汇总").Cells(jj, 1).Value, "V-") > 0 Then
+            Sheets("拆分汇总").Cells(jj, 2).Value = Split(Sheets("拆分汇总").Cells(jj, 1).Value, "V-")
+          Sheets("拆分汇总").Cells(jj, 2).Value = Join(Split(Sheets("拆分汇总").Cells(jj, 1).Value, "V-"), "Y-")
+          
+          
+          Else
+          
+          Sheets("拆分汇总").Cells(jj, 2).Value = Sheets("拆分汇总").Cells(jj, 1).Value
+          
+          End If
+          
+  
+             jj = jj - 1
+          Loop Until jj = 1
+          
+          
+ttt:
+End Sub
