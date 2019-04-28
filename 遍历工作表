@@ -1,0 +1,24 @@
+      Do
+      
+      If Sheets(snb).Name = "汇总表" Then
+      
+      Sheets(snb).Select
+      ifhz = 1
+      
+      Exit Do
+      End If
+      
+      
+      snb = snb + 1
+      
+      
+      Loop Until snb > Sheets.Count
+      
+      
+      If ifhz = 0 Then
+      
+      MsgBox "未找到“汇总表”"
+      
+      Exit Sub
+      End If
+      
